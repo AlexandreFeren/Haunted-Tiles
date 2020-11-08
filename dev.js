@@ -1,4 +1,4 @@
-//function main(gameState, side) {
+function main(gameState, side) {
   const myTeam = gameState.teamStates[side];
   const possibleMoves = [];
   const [rowSize, colSize] = gameState.boardSize;
