@@ -1,8 +1,8 @@
 function main(gameState, side) {
 	console.log(gameState);
 	console.log(side);
-	console.log(gameState.teamStates[side];
-	console.log(gameState.getOwnPropertyNames)
+	console.log(gameState.teamStates[side]);
+	console.log(gameState.getOwnPropertyNames);
 	const myTeam = gameState.teamStates[side];
 	const possibleMoves = [];
 	const [rowSize, colSize] = gameState.boardSize;
