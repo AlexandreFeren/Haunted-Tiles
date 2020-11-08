@@ -1,5 +1,9 @@
 function main(gameState, side) {
-  const myTeam = gameState.teamStates[side];
+  console.log(gameState);
+	console.log(side);
+	console.log(gameState.teamStates[side];
+	console.log(gameState.getOwnPropertyNames)
+	const myTeam = gameState.teamStates[side];
   const possibleMoves = [];
   const [rowSize, colSize] = gameState.boardSize;
   return new Promise((resolve, reject) => {
@@ -9,7 +13,8 @@ function main(gameState, side) {
           moveSet.push('none');
         } else {
           possibleMoves.push('none');
-          const [row, col] = member.coord;
+
+					const [row, col] = member.coord;
           if (row > 1) possibleMoves.push('north');
           if (row < rowSize - 1)  possibleMoves.push('south');
           if (col > 1) possibleMoves.push('west');
@@ -28,4 +33,3 @@ function main(gameState, side) {
 
     })
 }
- 
