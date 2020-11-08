@@ -12,21 +12,21 @@ function main(gameState, side) {
 				if (member.isDead) {
 					moveSet.push('none');
 				} else {
-					if (gameState.tileStates[member.coord[0]][member.coord[1]]) {
+					if (gameState.tileStates[member.coord[0]][member.coord[1]]) > 1 {
 						possibleMoves.push('none');
 					}
 
-			const [row, col] = member.coord;
-					if (row > 1) && gameState.tileStates[member.coord[0]-1][member.coord[1]] {
+					const [row, col] = member.coord;
+					if (row > 1) && gameState.tileStates[member.coord[0]-1][member.coord[1]] > 1 {
 						possibleMoves.push('north');
 					}
-					if (row < rowSize - 1) && gameState.tileStates[member.coord[0]+1][member.coord[1]] {
+					if (row < rowSize - 1) && gameState.tileStates[member.coord[0]+1][member.coord[1]] > 1 {
 						possibleMoves.push('south');
 					}
-					if (col > 1) && gameState.tileStates[member.coord[0]][member.coord[1]-1] {
+					if (col > 1) && gameState.tileStates[member.coord[0]][member.coord[1]-1] > 1 {
 						possibleMoves.push('west');
 					}
-					if (col < colSize - 1) && gameState.tileStates[member.coord[0]][member.coord[1]+1] {
+					if (col < colSize - 1) && gameState.tileStates[member.coord[0]][member.coord[1]+1] > 1 {
 						possibleMoves.push('east');
 					}
 					if (possibleMoves.length == 0){
