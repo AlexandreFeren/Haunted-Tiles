@@ -12,7 +12,7 @@ function main(gameState, side) {
 				if (member.isDead) {
 					moveSet.push('none');
 				} else {
-					if (gameState.tileStates[member.coord[0]][member.coord[1]]) > 1 {
+					if (gameState.tileStates[member.coord[0]][member.coord[1]] > 1) {
 						possibleMoves.push('none');
 					}
 
