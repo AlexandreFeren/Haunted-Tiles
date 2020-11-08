@@ -31,5 +31,5 @@ function main(gameState, side) {
 			callback
 		, 0); // test timeout of player script for limiting execution time.
 
-		})
+	})
 }
