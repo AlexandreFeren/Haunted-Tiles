@@ -30,7 +30,7 @@ function main(gameState, side) {
 						possibleMoves.push('east');
 					}
 
-					if (possibleMoves.length == 0){
+					if (possibleMoves.length === 0){
 						possibleMoves.push('none');
 					}
 					moveSet.push(possibleMoves[Math.floor(Math.random() * possibleMoves.length)]);
