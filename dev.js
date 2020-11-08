@@ -1,4 +1,3 @@
-export const wanderScript = `
 function main(gameState, side) {
   const myTeam = gameState.teamStates[side];
   const possibleMoves = [];
@@ -29,4 +28,3 @@ function main(gameState, side) {
 
     })
 }
-`;
