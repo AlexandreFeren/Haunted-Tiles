@@ -6,6 +6,8 @@ function main(gameState, side) {
 		allMoves = [];	//possible moves for all 6 monsters
 		for (let home of gameState.teamStates.home){
 			//get moves for home team
+			console.log(home);
+			console.log(home.getOwnPropertyNames());
 			for (let member of home){
 				allMoves.append(getValidMoves(member))
 			}
