@@ -4,13 +4,13 @@ function main(gameState, side) {
 	const [rowSize, colSize] = gameState.boardSize;
 	return new Promise((resolve, reject) => {			
 		allMoves = [];	//possible moves for all 6 monsters
-		for (let home of gameState.teamStates.home){
+		for (let member of gameState.teamStates.home){
 			//get moves for home team
-			console.log(home);
+			console.log(member);
 			//console.log(home.getOwnPropertyNames());
 			allMoves.append(getValidMoves(member))
 		}
-		for (let away of gameState.teamStates.away){
+		for (let member of gameState.teamStates.away){
 			//get moves for away team
 			allMoves.append(getValidMoves(member))
 		}
