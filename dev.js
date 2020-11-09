@@ -8,11 +8,11 @@ function main(gameState, side) {
 			//get moves for home team
 			console.log(member);
 			//console.log(home.getOwnPropertyNames());
-			allMoves.append(getValidMoves(gameState, member))
+			allMoves.push(getValidMoves(gameState, member))
 		}
 		for (let member of gameState.teamStates.away){
 			//get moves for away team
-			allMoves.append(getValidMoves(gameState, member))
+			allMoves.push(getValidMoves(gameState, member))
 		}
 		//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
 		//the actual return value will depend on which side you are playing for
