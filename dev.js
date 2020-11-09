@@ -7,7 +7,7 @@ function main(gameState, side) {
 		for (let home of gameState.teamStates.home){
 			//get moves for home team
 			console.log(home);
-			console.log(home.getOwnPropertyNames());
+			//console.log(home.getOwnPropertyNames());
 			allMoves.append(getValidMoves(member))
 		}
 		for (let away of gameState.teamStates.away){
