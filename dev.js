@@ -18,6 +18,7 @@ function main(gameState, side) {
 		//the actual return value will depend on which side you are playing for
 		console.log("MOVE ARRAY:");
 		console.log(allMoves);
+		console.log(minimax(gameState, allMoves, side));
 		return minimax(gameState, allMoves, side);
 		// we are returning a timeout here to test limiting execution time on the sandbox side.
 	})
