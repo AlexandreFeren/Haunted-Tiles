@@ -68,13 +68,14 @@ function value(gameState, possibleMoves){
 	//piece in region = C*value of region
 }
 function getGameState(){
-
+	//determines what the state of the board will be after a valid move set
 }
 function getRegionValue(x, y){
+	//determines the size of an area that a monster is in, may not get to implementation
 
 }
 function minimax(gameState, possibleMoves, depth){
-
+	//to be implemented, use the best n moves from the combineArr paired with getGameState
 }
 function combineArr(arr, ind = 0, result = [[]]){
 	//takes in an array of possible moves (probably limited for 2 for the sake of branching factors), and outputs all possible combinations
