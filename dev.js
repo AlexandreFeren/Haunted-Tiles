@@ -8,11 +8,11 @@ function main(gameState, side) {
 			//get moves for home team
 			console.log(member);
 			//console.log(home.getOwnPropertyNames());
-			allMoves.append(getValidMoves(member))
+			allMoves.append(getValidMoves(gameState, member))
 		}
 		for (let member of gameState.teamStates.away){
 			//get moves for away team
-			allMoves.append(getValidMoves(member))
+			allMoves.append(getValidMoves(gameState, member))
 		}
 		//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
 		//the actual return value will depend on which side you are playing for
@@ -24,7 +24,7 @@ function main(gameState, side) {
 	})
 }
 
-function getValidMoves(member){
+function getValidMoves(gameState, member){
 	const [rowSize, colSize] = gameState.boardSize;
 	moves = []
 	if (member.isDead){
@@ -47,10 +47,10 @@ function value(gameState, possibleMoves){
 	//piece near ally = bad
 	//piece in region = C*value of region
 }
-function getGameState(){
+function getGameState(gameState, moves){
 	//determines what the state of the board will be after a valid move set
 }
-function getRegionValue(x, y){
+function getRegionValue(gameState, x, y){
 	//determines the size of an area that a monster is in, may not get to implementation
 
 }
