@@ -25,15 +25,16 @@ function main(gameState, side) {
 }
 
 function getValidMoves(member){
+	moves = []
 	if (member.isDead){
 		moves.push('none');
 	}else{
 		moves.push('none');
 		const [row, col] = member.coord;
-		if (row > 1) possibleMoves.push('north');
-		if (row < rowSize - 1)  possibleMoves.push('south');
-		if (col > 1) possibleMoves.push('west');
-		if (col < colSize - 1)  possibleMoves.push('east');
+		if (row > 1) moves.push('north');
+		if (row < rowSize - 1)  moves.push('south');
+		if (col > 1) moves.push('west');
+		if (col < colSize - 1)  moves.push('east');
 	}
 	return moves;
 }
