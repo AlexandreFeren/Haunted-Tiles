@@ -1,7 +1,6 @@
 function main(gameState, side) {
 	const myTeam = gameState.teamStates[side];
 	const possibleMoves = [];
-	const [rowSize, colSize] = gameState.boardSize;
 	return new Promise((resolve, reject) => {			
 		allMoves = [];	//possible moves for all 6 monsters
 		for (let member of gameState.teamStates.home){
@@ -25,6 +24,7 @@ function main(gameState, side) {
 }
 
 function getValidMoves(member){
+	const [rowSize, colSize] = gameState.boardSize;
 	moves = []
 	if (member.isDead){
 		moves.push('none');
