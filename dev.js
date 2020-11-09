@@ -1,5 +1,6 @@
 function main(gameState, side) {
 	const myTeam = gameState.teamStates[side];
+	const [rowSize, colSize] = gameState.boardSize;
 	const possibleMoves = [];
 	return new Promise((resolve, reject) => {			
 		allMoves = [];	//possible moves for all 6 monsters
