@@ -2,60 +2,43 @@ function main(gameState, side) {
 	const myTeam = gameState.teamStates[side];
 	const possibleMoves = [];
 	const [rowSize, colSize] = gameState.boardSize;
-	return new Promise((resolve, reject) => {
-		const callback = () => resolve(
-			myTeam.reduce((moveSet, member) => {
-				if (member.isDead) {
-					moveSet.push('none');
-				} else {
-					if (gameState.tileStates[member.coord[0]][member.coord[1]] > 1) {
-						possibleMoves.push('none');
-					}
-
-					const [row, col] = member.coord;
-					if ((row > 1) && gameState.tileStates[member.coord[0]-1][member.coord[1]] > 1) {
-						possibleMoves.push('north');
-					}
-					if ((row < rowSize - 1) && gameState.tileStates[member.coord[0]+1][member.coord[1]] > 1) {
-						possibleMoves.push('south');
-					}
-					if ((col > 1) && gameState.tileStates[member.coord[0]][member.coord[1]-1] > 1) {
-						possibleMoves.push('west');
-					}
-					if ((col < colSize - 1) && gameState.tileStates[member.coord[0]][member.coord[1]+1] > 1) {
-						possibleMoves.push('east');
-					}
-					if (possibleMoves.length == 0){
-						moveSet.push('none');
-					}
-					moveSet.push(possibleMoves[Math.floor(Math.random() * possibleMoves.length)]);
-					possibleMoves.length = 0;
-				}
-				return moveSet;
-			}, [])
-		);
-
+	return new Promise((resolve, reject) => {			
+		allMoves = [];	//possible moves for all 6 monsters
+		for (let home of gameState.teamStates.home){
+			//get moves for home team
+			for (let member of home){
+				allMoves.append(getValidMoves(member))
+			}
+		}
+		for (let away of gameState.teamStates.away){
+			//get moves for away team
+			for (let member of away){
+				allMoves.append(getValidMoves(member))
+			}
+		}
+		//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
+		//the actual return value will depend on which side you are playing for
+		console.log("MOVE ARRAY:");
+		console.log(allMoves);
+		return minimax(gameState, allMoves, side);
 		// we are returning a timeout here to test limiting execution time on the sandbox side.
-		return setTimeout(
-			callback
-		, 0); // test timeout of player script for limiting execution time.
-
 	})
 }
-function getValidMoves(){
-	moves = [];
-	possibleMoves.push('none');
-	const [row, col] = member.coord;
-	possibleMoves.push('north');
-	possibleMoves.push('south');
-	possibleMoves.push('west');
-	possibleMoves.push('east');
 
-	moveSet.push(possibleMoves[Math.floor(Math.random() * possibleMoves.length)]);
-	possibleMoves.length = 0;
-	
+function getValidMoves(){
+	if (member.isDead){
+		moves.push('none');
+	}else{
+		moves.push('none');
+		const [row, col] = member.coord;
+		if (row > 1) possibleMoves.push('north');
+		if (row < rowSize - 1)  possibleMoves.push('south');
+		if (col > 1) possibleMoves.push('west');
+		if (col < colSize - 1)  possibleMoves.push('east');
+	}
 	return moves;
 }
+
 function value(gameState, possibleMoves){
 	//piece alive = good
 	//piece near middle = good
@@ -70,8 +53,14 @@ function getRegionValue(x, y){
 	//determines the size of an area that a monster is in, may not get to implementation
 
 }
-function minimax(gameState, possibleMoves, depth){
+function minimax(gameState, possibleMoves, side, depth){
 	//to be implemented, use the best n moves from the combineArr paired with getGameState
+	if (side === 'home'){
+		return [possibleMoves[0][0], possibleMoves[1][0], possibleMoves[2][0]];
+	}
+	else{
+		return [possibleMoves[3][0], possibleMoves[4][1], possibleMoves[5][0]];
+	}
 }
 function combineArr(arr, ind = 0, result = [[]]){
 	//takes in an array of possible moves (probably limited for 2 for the sake of branching factors), and outputs all possible combinations
