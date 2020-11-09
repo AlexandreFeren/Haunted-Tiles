@@ -24,7 +24,7 @@ function main(gameState, side) {
 	})
 }
 
-function getValidMoves(){
+function getValidMoves(member){
 	if (member.isDead){
 		moves.push('none');
 	}else{
