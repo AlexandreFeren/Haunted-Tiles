@@ -17,11 +17,11 @@ function main(gameState, side) {
           moveSet.push(possibleMoves[Math.floor(Math.random() * possibleMoves.length)]);
           possibleMoves.length = 0;
         }
-	console.log(moveSet);
+	//console.log(moveSet);
         return moveSet;
       }, [])
     );
-
+	console.log(callback);
     // we are returning a timeout here to test limiting execution time on the sandbox side.
     return setTimeout(
       callback
