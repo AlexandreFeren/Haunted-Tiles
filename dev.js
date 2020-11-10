@@ -49,8 +49,51 @@ function getGameState(gameState, moves){
 	//determines what the state of the board will be after a valid move set
 }
 function getRegionValue(gameState, x, y){
-	//determines the size of an area that a monster is in, may not get to implementation
+	//determines the size of an area that a monster is in using the location it is at.
+	//very much an approximation for efficiency's sake
+	x = 0;
+	y = 0;
+	if (i < 0 || i >= board.length){
+		return 0;
+	}
+	if (j < 0 || j >= board[i].length){
+		return 0;
+	}
+	//start heading to top left corner
+	while (i > 0){
+		if (parseInt(board[i][j]) <= 1){
+			i += 1;
+			break;
+		}
+		i -= 1;
+	}
+	while (j > 0){
+		if (parseInt(board[i][j]) <= 1){
+			j += 1;
+			break;
+		}
+		j -= 1;
+	}
+	
+	//start heading to bottom left corner
+	while (i < board.length){
+		if (parseInt(board[i][j]) <= 1){
+			i -= 1;
+			break;
+		}
+		i+= 1;
+		x += 1;
+	}
 
+	while (j < board[i].length){
+		if (parseInt(board[i][j]) <= 1){
+			j -= 1;
+			break;
+		}
+		j+= 1;
+		y += 1;
+	}
+	return x*y
 }
 function minimax(gameState, possibleMoves, side, depth){
 	//to be implemented, use the best n moves from the combineArr paired with getGameState
