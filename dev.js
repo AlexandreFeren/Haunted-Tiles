@@ -64,14 +64,14 @@ function value(gameState, side){
 			val += Math.abs(teams.away[i].coord[0] - 3) + Math.abs(teams.away[i].coord[1] - 3);
 		}
 	}
-	/*
+
 	for (i = 0; i < 3; i++){
 		console.log("Game State:");
 		console.log(gameState);
 		val += getRegionValue(gameState.tileStates, teams.home[i].coord[0], teams.home[i].coord[1]);	
 		val -= getRegionValue(gameState.tileStates, teams.away[i].coord[0], teams.away[i].coord[1]);	
 	}
-	*/
+
 	//get distance to nearest enemy. Since this is roughly equal for each team, it will be set based on team affiliation
 	tempVal = 0;
 	for (i = 0; i < 3; i++){
