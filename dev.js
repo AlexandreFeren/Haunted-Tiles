@@ -92,7 +92,7 @@ function value(gameState, side){
 function getGameState(gameState, moves){
 	//determines what the state of the board will be after a valid move set
 }
-function getRegionValue(board, x, y){
+function getRegionValue(board, i, j){
 	//determines the size of an area that a monster is in using the location it is at.
 	//very much an approximation for efficiency's sake
 	x = 0;
