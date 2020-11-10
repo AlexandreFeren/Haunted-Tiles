@@ -16,7 +16,7 @@ function main(gameState, side) {
 	//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
 	//the actual return value will depend on which side you are playing for
 	//console.log(gameState.tileStates);
-	console.log(value(gameState));
+	console.log(value(gameState, side));
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
@@ -37,7 +37,7 @@ function getValidMoves(gameState, member){
 	return moves;
 }
 
-function value(gameState){
+function value(gameState, side){
 	//piece alive = good
 	//piece near middle = good
 	//piece near opponent = good
