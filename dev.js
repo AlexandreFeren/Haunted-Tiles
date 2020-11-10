@@ -134,3 +134,15 @@ function combineArr(arr, ind = 0, result = [[]]){
 		return combineArr(arr, ind+1, newResult);
 	}
 }
+function translateToBitmap(boardState, playerStates){
+	//using this to ultimately  transition functions to being more efficient by using bitmaps
+	//for now the implementation is just going to be basic array-based
+	//takes a 7x7 array and a 6x2 array
+	//currently unsure of how exactly bitmaps will be represented, but it needs 98 bits for the board
+	//and 62 bits for the pieces (x loc, y loc)
+
+}
+function translateFromBitmap(state){
+	//take whatever bitmap is made and convert it back to arrays
+	//needed to transition over to using bitmaps if that is ultimately done
+}
