@@ -29,9 +29,9 @@ function getValidMoves(gameState, member){
 	}else{
 		moves.push('none');
 		const [row, col] = member.coord;
-		if (row > 1) moves.push('north');
+		if (row > 0) moves.push('north');
 		if (row < rowSize - 1)  moves.push('south');
-		if (col > 1) moves.push('west');
+		if (col > 0) moves.push('west');
 		if (col < colSize - 1)  moves.push('east');
 	}
 	return moves;
