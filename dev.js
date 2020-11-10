@@ -5,7 +5,7 @@ function main(gameState, side) {
 	allMoves = [];	//possible moves for all 6 monsters
 	for (let member of gameState.teamStates.home){
 		//get moves for home team
-		console.log(member);
+		//console.log(member);
 		//console.log(home.getOwnPropertyNames());
 		allMoves.push(getValidMoves(gameState, member))
 	}
@@ -43,9 +43,10 @@ function value(gameState){
 	//piece near opponent = good
 	//piece near ally = bad
 	//piece in region = C*value of region
-	console.log(gameState.teamStates.home.getOwnPropertyNames());
+	//console.log(gameState.teamStates.home.getOwnPropertyNames());
 	val = 0;
 	for (i = 0; i < 3; i++){
+		
 		if (gameState.teamStates.home[i].isDead){
 			val -= 1000;
 		}
@@ -53,6 +54,8 @@ function value(gameState){
 			val += 1000;
 		}
 	}
+	
+	//get distance from center, this should be member.coord manhattan distance to board[3][3]
 }
 function getGameState(gameState, moves){
 	//determines what the state of the board will be after a valid move set
