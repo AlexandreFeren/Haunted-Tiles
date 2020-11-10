@@ -65,6 +65,8 @@ function value(gameState, side){
 		}
 	}
 	for (i = 0; i < 3; i++){
+		console.log("Game State:");
+		console.log(gameState);
 		val += getRegionValue(gameState.tileStates, teams.home[i].coord[0], teams.home[i].coord[1]);	
 		val -= getRegionValue(gameState.tileStates, teams.away[i].coord[0], teams.away[i].coord[1]);	
 	}
