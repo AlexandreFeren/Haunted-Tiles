@@ -17,6 +17,8 @@ function main(gameState, side) {
 	//the actual return value will depend on which side you are playing for
 	//console.log(gameState.tileStates);
 	console.log(value(gameState, side));
+	console.log("RETURN");
+	console.log(minimax(gameState, allMoves, side));
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
@@ -109,20 +111,26 @@ function getRegionValue(board, i, j){
 	if (j < 0 || j >= board[i].length){
 		return 0;
 	}
+	if (parseInt(board[i][j]) <= 1){
+		//monster standing on broken tile (value 1), could cause out of bounds error if not checked
+		return 0;	
+	}
 	//start heading to top left corner
-	while (i > 0){
+	while (i > 0 ){
+		//head to top
+		i -= 1;
 		if (parseInt(board[i][j]) <= 1){
 			i += 1;
 			break;
 		}
-		i -= 1;
 	}
 	while (j > 0){
+		//head to left
+		j -= 1;
 		if (parseInt(board[i][j]) <= 1){
 			j += 1;
 			break;
 		}
-		j -= 1;
 	}
 	
 	//start heading to bottom left corner
@@ -134,7 +142,7 @@ function getRegionValue(board, i, j){
 		i+= 1;
 		x += 1;
 	}
-
+	i -= 1;	//the current setup is such that the counter will go until 1 out of bounds on a fresh board without this.
 	while (j < board[i].length){
 		if (parseInt(board[i][j]) <= 1){
 			j -= 1;
@@ -143,7 +151,8 @@ function getRegionValue(board, i, j){
 		j+= 1;
 		y += 1;
 	}
-	return x*y
+	j -= 1;
+	return x*y;
 }
 function minimax(gameState, possibleMoves, side, depth){
 	//to be implemented, use the best n moves from the combineArr paired with getGameState
