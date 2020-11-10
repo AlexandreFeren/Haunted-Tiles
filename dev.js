@@ -45,17 +45,46 @@ function value(gameState){
 	//piece in region = C*value of region
 	//console.log(gameState.teamStates.home.getOwnPropertyNames());
 	val = 0;
+	teams = gameState.teamStates;
 	for (i = 0; i < 3; i++){
-		
-		if (gameState.teamStates.home[i].isDead){
+		if (teams.home[i].isDead){
 			val -= 1000;
 		}
-		if (gameState.teamStates.home[i].isDead){
+		if (teams.away[i].isDead){
 			val += 1000;
 		}
 	}
 	
 	//get distance from center, this should be member.coord manhattan distance to board[3][3]
+	for (i = 0; i < 3; i++){
+		if (!teams.home[i].isDead){
+			val -= (Math.abs(teams.home[i].coord[0] - 3) + Math.abs(teams.home[i].coord[1] - 3));
+		}
+		if (!teams.away[i].isDead){
+			val += Math.abs(teams.away[i].coord[0] - 3) + Math.abs(teams.away[i].coord[1] - 3);
+		}
+	}
+	
+	//get distance to nearest enemy. Since this is roughly equal for each team, it will be set based on team affiliation
+	tempVal = 0;
+	for (i = 0; i < 3; i++){
+		for (j = 0; j < 3; j++){
+			//get min of distance to each of 3 pieces
+			if (!teams.home[i].isDead){
+				if (!teams.away[j].isDead){
+					tempVal += Math.abs(teams.home[i].coord[0]-teams.away[j].coord[0]) + Math.abs(teams.home[i].coord[1]-teams.away[j].coord[1]);
+				}
+			}
+		}
+	}
+	if (side == 'home'){
+		val += tempVal;
+	}
+	else{
+		val -= tempVal
+	}
+		
+	return val;
 }
 function getGameState(gameState, moves){
 	//determines what the state of the board will be after a valid move set
