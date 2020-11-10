@@ -15,9 +15,7 @@ function main(gameState, side) {
 	}
 	//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
 	//the actual return value will depend on which side you are playing for
-	console.log("MOVE ARRAY:");
-	console.log(allMoves);
-	console.log(minimax(gameState, allMoves, side));
+	console.log(gameState.tileStates);
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
