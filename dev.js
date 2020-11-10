@@ -97,6 +97,8 @@ function getRegionValue(board, i, j){
 	//very much an approximation for efficiency's sake
 	x = 0;
 	y = 0;
+	console.log("board");
+	console.log(board);
 	if (i < 0 || i >= board.length){
 		return 0;
 	}
