@@ -134,7 +134,7 @@ function getRegionValue(board, i, j){
 	}
 	
 	//start heading to bottom left corner
-	while (i < board.length){
+	while (i < board.length-1){
 		if (parseInt(board[i][j]) <= 1){
 			i -= 1;
 			break;
@@ -142,8 +142,7 @@ function getRegionValue(board, i, j){
 		i+= 1;
 		x += 1;
 	}
-	i -= 1;	//the current setup is such that the counter will go until 1 out of bounds on a fresh board without this.
-	while (j < board[i].length){
+	while (j < board[i].length-1){
 		if (parseInt(board[i][j]) <= 1){
 			j -= 1;
 			break;
@@ -151,8 +150,7 @@ function getRegionValue(board, i, j){
 		j+= 1;
 		y += 1;
 	}
-	j -= 1;
-	return x*y;
+	return (x+1)*(y+1);
 }
 function minimax(gameState, possibleMoves, side, depth){
 	//to be implemented, use the best n moves from the combineArr paired with getGameState
