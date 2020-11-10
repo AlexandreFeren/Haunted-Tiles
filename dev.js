@@ -15,7 +15,8 @@ function main(gameState, side) {
 	}
 	//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
 	//the actual return value will depend on which side you are playing for
-	console.log(gameState.tileStates);
+	//console.log(gameState.tileStates);
+	console.log(value(gameState));
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
@@ -36,12 +37,22 @@ function getValidMoves(gameState, member){
 	return moves;
 }
 
-function value(gameState, possibleMoves){
+function value(gameState){
 	//piece alive = good
 	//piece near middle = good
 	//piece near opponent = good
 	//piece near ally = bad
 	//piece in region = C*value of region
+	console.log(gameState.teamStates.home.getOwnPropertyNames());
+	val = 0;
+	for (i = 0; i < 3; i++){
+		if (gameState.teamStates.home[i].isDead){
+			val -= 1000;
+		}
+		if (gameState.teamStates.home[i].isDead){
+			val += 1000;
+		}
+	}
 }
 function getGameState(gameState, moves){
 	//determines what the state of the board will be after a valid move set
