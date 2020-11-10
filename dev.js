@@ -64,7 +64,10 @@ function value(gameState, side){
 			val += Math.abs(teams.away[i].coord[0] - 3) + Math.abs(teams.away[i].coord[1] - 3);
 		}
 	}
-	
+	for (i = 0; i < 3; i++){
+		val += getRegionValue(gameState.tileStates, teams.home[i].coord[0], teams.home[i].coord[1]);	
+		val -= getRegionValue(gameState.tileStates, teams.away[i].coord[0], teams.away[i].coord[1]);	
+	}
 	//get distance to nearest enemy. Since this is roughly equal for each team, it will be set based on team affiliation
 	tempVal = 0;
 	for (i = 0; i < 3; i++){
@@ -89,7 +92,7 @@ function value(gameState, side){
 function getGameState(gameState, moves){
 	//determines what the state of the board will be after a valid move set
 }
-function getRegionValue(gameState, x, y){
+function getRegionValue(board, x, y){
 	//determines the size of an area that a monster is in using the location it is at.
 	//very much an approximation for efficiency's sake
 	x = 0;
