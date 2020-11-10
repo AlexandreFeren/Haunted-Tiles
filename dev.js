@@ -142,10 +142,10 @@ function getRegionValue(board, x, y){
 function minimax(gameState, possibleMoves, side, depth){
 	//to be implemented, use the best n moves from the combineArr paired with getGameState
 	if (side === 'home'){
-		return [possibleMoves[0][0], possibleMoves[1][0], possibleMoves[2][0]];
+		return [possibleMoves[0][1], possibleMoves[1][1], possibleMoves[2][1]];
 	}
 	else{
-		return [possibleMoves[3][0], possibleMoves[4][0], possibleMoves[5][0]];
+		return [possibleMoves[3][1], possibleMoves[4][1], possibleMoves[5][1]];
 	}
 }
 function combineArr(arr, ind = 0, result = [[]]){
