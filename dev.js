@@ -191,21 +191,21 @@ function getGameState(gameState, move, side = ""){
 				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]-1][gameState[1][(0+Math.floor(move.length/3))%2][i][1]] -= 1;
 				gameState[1][0][i][0]--;
 			}else if (move[i] == 'south') {
-				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]-1][i][0]+1][gameState[1][(0+Math.floor(move.length/3))%2][i][1]] -= 1;
+				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]+1][gameState[1][(0+Math.floor(move.length/3))%2][i][1]] -= 1;
 				gameState[1][0][i][0]++;
 			}else if (move[i] == 'west') {
-				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]-1][i][0]][gameState[1][(0+Math.floor(move.length/3))%2][i][1]-1] -= 1;
+				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]][gameState[1][(0+Math.floor(move.length/3))%2][i][1]-1] -= 1;
 				gameState[1][0][i][1]--;
 			}else if (move[i] == 'east') {
-				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]-1][i][0]][gameState[1][(0+Math.floor(move.length/3))%2][i][1]+1] -= 1;
+				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]][gameState[1][(0+Math.floor(move.length/3))%2][i][1]+1] -= 1;
 				gameState[1][0][i][1]++;
 			}else{
-				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]-1][i][0]][gameState[1][(0+Math.floor(move.length/3))%2][i][1]] -= 1;
+				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]][gameState[1][(0+Math.floor(move.length/3))%2][i][1]] -= 1;
 			}
 		}
 		if (side == 'away' || side == ""){
 			if (move[i] == 'north') {
-				gameState[0][gameState[1][(1+Math.floor(move.length/3))%2][i][0]-1][i][0]-1][gameState[1][(1+Math.floor(move.length/3))%2][i][1]] -= 1;
+				gameState[0][gameState[1][(1+Math.floor(move.length/3))%2][i][0]-1][gameState[1][(1+Math.floor(move.length/3))%2][i][1]] -= 1;
 				gameState[1][1][i][0]--;
 			}else if (move[i] == 'south') {
 				gameState[0][gameState[1][(1+Math.floor(move.length/3))%2][i][0]+1][gameState[1][(1+Math.floor(move.length/3))%2][i][1]] -= 1;
