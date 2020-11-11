@@ -114,12 +114,12 @@ function value(gameState, side){
 	//piece in region = C*value of region
 	//console.log(gameState.teamStates.home.getOwnPropertyNames());
 	val = 0;
-	teams = gameState.teamStates;
+	teams = gameState[1];
 	for (i = 0; i < 3; i++){
-		if (teams.home[i].isDead){
+		if (teams[0][i][2]){
 			val -= 1000;
 		}
-		if (teams.away[i].isDead){
+		if (teams[1][i][2]){
 			val += 1000;
 		}
 	}
@@ -138,28 +138,33 @@ function value(gameState, side){
 	for (i = 0; i < 3; i++){
 		//console.log("Game State:");
 		//console.log(gameState);
-		val += getRegionValue(gameState.tileStates, teams.home[i].coord[0], teams.home[i].coord[1]);	
-		val -= getRegionValue(gameState.tileStates, teams.away[i].coord[0], teams.away[i].coord[1]);	
+		
+		//get value of the region for each piece
+		val += getRegionValue(gameState[0], teams[0][i][0], teams.home[i][1]);	
+		val -= getRegionValue(gameState[0], teams[0][i][0], teams.away[i][1]);	
 	}
 
 	//get distance to nearest enemy. Since this is roughly equal for each team, it will be set based on team affiliation
-	tempVal = 0;
 	for (i = 0; i < 3; i++){
+		tempVal = [];
 		for (j = 0; j < 3; j++){
 			//get min of distance to each of 3 pieces
-			if (!teams.home[i].isDead){
-				if (!teams.away[j].isDead){
-					tempVal += Math.abs(teams.home[i].coord[0]-teams.away[j].coord[0]) + Math.abs(teams.home[i].coord[1]-teams.away[j].coord[1]);
+			if (!teams[0][i][3]){
+				if (!teams[1][j][3]){
+					//manhattan distance between closest pieces
+					//this needs fixing, as it currently sums all distances
+					tempVal.push(Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
 				}
 			}
 		}
+		if (side == 'home'){
+			val += Math.max(tempVal);
+		}
+		else{
+			val -= Math.max(tempVal);
+		}
 	}
-	if (side == 'home'){
-		val += tempVal;
-	}
-	else{
-		val -= tempVal
-	}
+
 		
 	return val;
 }
