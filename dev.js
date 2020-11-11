@@ -29,6 +29,8 @@ function main(gameState, side) {
 	teams = [gameState.teamStates.home.coord, gameState.teamStates.away.coord];
 	
 	console.log("teams");
+	console.log(gameState.teamStates.home);
+	console.log(gameState.teamStates.home);
 	console.log(gameState.teamStates.home.coord);
 	console.log(gameState.teamStates.away.coord);	
 	console.log(teams);
