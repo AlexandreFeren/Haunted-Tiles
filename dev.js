@@ -31,10 +31,18 @@ function getValidMoves(gameState, member){
 	}else{
 		moves.push('none');
 		const [row, col] = member.coord;
-		if (row > 0) moves.push('north');
-		if (row < rowSize - 1)  moves.push('south');
-		if (col > 0) moves.push('west');
-		if (col < colSize - 1)  moves.push('east');
+		if ((row > 0) && board[row-1][col] > 1){
+			moves.push('north');
+		}
+		if ((row < rowSize - 1) && board[row+1][col] > 1){
+			moves.push('south');
+		}
+		if ((col > 0) && board[row][col-1] > 1) {
+			moves.push('west');
+		}
+		if ((col < colSize - 1) && board[row][col+1] > 1) {
+			moves.push('east');
+		}
 	}
 	return moves;
 }
