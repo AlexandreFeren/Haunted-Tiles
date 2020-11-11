@@ -20,15 +20,15 @@ function main(gameState, side) {
 	//console.log("RETURN");
 	//console.log(minimax(gameState, allMoves, side));
 	console.log("in main");
-	console.log(gameState);
+	//console.log(gameState);
 	//b = gameState.tileStates;
 	//console.log(b);
 	//b[0][0] = -1;
 	//console.log("testing board copy");
 	//console.log(b);
 	b = [[],[],[],[],[],[],[]];
-	for (i = 0; i < gameState.tileStates; i++){
-		for (j = 0; j < gameState.tileStates[i]; j++){
+	for (i = 0; i < gameState.tileStates.length; i++){
+		for (j = 0; j < gameState.tileStates[i].length; j++){
 			b[i].push(gameState.tileStates[i][j]);
 		}
 	}
@@ -125,13 +125,13 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 	//determines what the state of the board will be after a valid move set
 	//should take in array of length 3
 	board = gameState.tileStates;
-	console.log("in getGameState");
-	console.log(gameState);
-	console.log(move);
+	//console.log("in getGameState");
+	//console.log(gameState);
+	//console.log(move);
 	for (i = toMoveStart; i < toMoveStart + move.length; i++){
-		console.log("in loop");
-		console.log(gameState);
-		console.log(gameState[1][0][i]);
+		//console.log("in loop");
+		//console.log(gameState);
+		//console.log(gameState[1][0][i]);
 
 		if (side == 'home' || side == ""){
 			if (move[i] == 'north') {
