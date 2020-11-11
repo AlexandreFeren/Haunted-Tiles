@@ -27,25 +27,25 @@ function main(gameState, side) {
 	
 	
 	//console.log(b);
-	console.log("teams");
+	//console.log("teams");
 
 	h = [];
 	a = [];
 	
 	for (i = 0; i < 3; i++){
-		console.log("loop");
-		console.log(gameState.teamStates.home[i]);
-		console.log(gameState.teamStates.home[i].coord);
+		//console.log("loop");
+		//console.log(gameState.teamStates.home[i]);
+		//console.log(gameState.teamStates.home[i].coord);
 	
 		h.push(gameState.teamStates.home[i].coord);
 		a.push(gameState.teamStates.away[i].coord);
 	}
 	teams = [h, a];
 	
-	console.log(gameState.teamStates.home);
-	console.log(gameState.teamStates.home);
-	console.log(teams);
-	console.log(gameState);
+	//console.log(gameState.teamStates.home);
+	//console.log(gameState.teamStates.home);
+	//console.log(teams);
+	//console.log(gameState);
 	console.log(getGameState([b, teams], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
@@ -142,6 +142,7 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 	//console.log(move);
 	console.log("from teams, home, 1st member hopefully. Expecting [0, 0] probably");
 	console.log(gameState[1][0][0]);
+	console.log(teams);
 	for (i = toMoveStart; i < toMoveStart + move.length; i++){
 		//console.log("in loop");
 		//console.log(gameState);
