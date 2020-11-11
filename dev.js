@@ -15,27 +15,19 @@ function main(gameState, side) {
 	}
 	//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
 	//the actual return value will depend on which side you are playing for
-	//console.log(gameState.tileStates);
-	//console.log(value(gameState, side));
-	//console.log("RETURN");
-	//console.log(minimax(gameState, allMoves, side));
+	
 	console.log("in main");
-	//console.log(gameState);
-	//b = gameState.tileStates;
-	//console.log(b);
-	//b[0][0] = -1;
-	//console.log("testing board copy");
-	//console.log(b);
+
 	b = [[],[],[],[],[],[],[]];
 	for (i = 0; i < gameState.tileStates.length; i++){
 		for (j = 0; j < gameState.tileStates[i].length; j++){
 			b[i].push(gameState.tileStates[i][j]);
 		}
 	}
-	console.log(b);
+	//console.log(b);
 	
 	teams = [gameState.teamStates.home, gameState.teamStates.away];
-	
+	console.log(gameState);
 	console.log(getGameState([b, teams], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
@@ -173,6 +165,8 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 		}
 	}
 	//gameState.teamStates.home = 
+	
+	console.log(gameState[0][gameState[1][0][i].coord[0]][gameState[1][0][i].coord[1]]);
 
 	return gameState;
 	
