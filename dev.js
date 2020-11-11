@@ -32,7 +32,7 @@ function main(gameState, side) {
 	h = [];
 	a = [];
 	
-	for i in range(3):
+	for (i = 0; i < 3; i++):
 		console.log("loop");
 		console.log(gameState.teamStates.home[i]);
 		console.log(gameState.teamStates.home[i].coord);
