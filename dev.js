@@ -122,6 +122,8 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 	//console.log("in getGameState");
 	//console.log(gameState);
 	//console.log(move);
+	console.log("from teams, home, 1st member hopefully. Expecting [0, 0] probably");
+	console.log(gameState[1][0][0]);
 	for (i = toMoveStart; i < toMoveStart + move.length; i++){
 		//console.log("in loop");
 		//console.log(gameState);
