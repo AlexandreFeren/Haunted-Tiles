@@ -21,7 +21,7 @@ function main(gameState, side) {
 	//console.log(minimax(gameState, allMoves, side));
 	console.log("in main");
 	console.log(gameState);
-	getGameState([gameState.tileStates, [gameState.teamStates.home, gameState.teamStates.away]], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side)
+	console.log(getGameState([gameState.tileStates, [gameState.teamStates.home, gameState.teamStates.away]], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
@@ -112,13 +112,13 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 	//determines what the state of the board will be after a valid move set
 	//should take in array of length 3
 	//board = gameState.tileStates;
-	console.log("in getGameState");
-	console.log(gameState);
-	console.log(move);
+	//console.log("in getGameState");
+	//console.log(gameState);
+	//console.log(move);
 	for (i = toMoveStart; i < toMoveStart + move.length; i++){
-		console.log("in loop");
-		console.log(gameState);
-		console.log(gameState[1][0][i]);
+		//console.log("in loop");
+		//console.log(gameState);
+		//console.log(gameState[1][0][i]);
 
 		if (side == 'home' || side == ""){
 			if (move[i] == 'north') {
