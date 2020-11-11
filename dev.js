@@ -122,7 +122,7 @@ function getRegionValue(board, i, j){
 	if (j < 0 || j >= board[i].length){
 		return 0;
 	}
-	if (parseInt(board[i][j]) <= 1){
+	if (board[i][j] <= 1){
 		//monster standing on broken tile (value 1), could cause out of bounds error if not checked
 		return 0;	
 	}
@@ -130,7 +130,7 @@ function getRegionValue(board, i, j){
 	while (i > 0 ){
 		//head to top
 		i -= 1;
-		if (parseInt(board[i][j]) <= 1){
+		if (board[i][j] <= 1){
 			i += 1;
 			break;
 		}
@@ -138,7 +138,7 @@ function getRegionValue(board, i, j){
 	while (j > 0){
 		//head to left
 		j -= 1;
-		if (parseInt(board[i][j]) <= 1){
+		if (board[i][j] <= 1){
 			j += 1;
 			break;
 		}
@@ -146,7 +146,7 @@ function getRegionValue(board, i, j){
 	
 	//start heading to bottom left corner
 	while (i < board.length-1){
-		if (parseInt(board[i][j]) <= 1){
+		if (board[i][j] <= 1){
 			i -= 1;
 			break;
 		}
@@ -154,7 +154,7 @@ function getRegionValue(board, i, j){
 		x += 1;
 	}
 	while (j < board[i].length-1){
-		if (parseInt(board[i][j]) <= 1){
+		if (board[i][j] <= 1){
 			j -= 1;
 			break;
 		}
