@@ -117,14 +117,14 @@ function value(gameState, side){
 function getGameState(gameState, move, side, toMoveStart = 0){
 	//determines what the state of the board will be after a valid move set
 	//should take in array of length 3
-	//board = gameState.tileStates;
-	//console.log("in getGameState");
-	//console.log(gameState);
-	//console.log(move);
+	board = gameState.tileStates;
+	console.log("in getGameState");
+	console.log(gameState);
+	console.log(move);
 	for (i = toMoveStart; i < toMoveStart + move.length; i++){
-		//console.log("in loop");
-		//console.log(gameState);
-		//console.log(gameState[1][0][i]);
+		console.log("in loop");
+		console.log(gameState);
+		console.log(gameState[1][0][i]);
 
 		if (side == 'home' || side == ""){
 			if (move[i] == 'north') {
