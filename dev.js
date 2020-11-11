@@ -128,8 +128,8 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 		//console.log(gameState[1][0][i]);
 
 		if (side == 'home' || side == ""){
-			console.log(gameState[1][0][1]);
-			console.log(gameState[0][gameState[1][0][i].coord[0]][gameState[1][0][i].coord[1]]);
+			//console.log(gameState[1][0][1]);
+			//console.log(gameState[0][gameState[1][0][i].coord[0]][gameState[1][0][i].coord[1]]);
 			if (move[i] == 'north') {
 				gameState[0][gameState[1][0][i].coord[0]-1][gameState[1][0][i].coord[1]] -= 1;
 				gameState[1][0][i].coord[0]--;
