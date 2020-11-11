@@ -168,8 +168,11 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 	console.log("S");
 	console.log(gameState[0]);
 	console.log(gameState[1]);
-	console.log(gameState[1][0][i]);
-	console.log(gameState[1][0][i].coord[0]);
+	console.log("[1][0]");
+	console.log(gameState[1][0]);
+	console.log("");
+	console.log(gameState[1][0][0]);
+	console.log(gameState[1][0][0].coord[0]);
 	console.log(gameState[0][gameState[1][0][i].coord[0]][gameState[1][0][i].coord[1]]);
 	console.log("E");
 	return gameState;
