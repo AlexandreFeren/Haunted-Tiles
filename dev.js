@@ -24,16 +24,24 @@ function main(gameState, side) {
 			b[i].push(gameState.tileStates[i][j]);
 		}
 	}
+	
+	
 	//console.log(b);
+	console.log("teams");
+
 	h = [];
 	a = [];
+	
 	for i in range(3):
+		console.log("loop");
+		console.log(gameState.teamStates.home[i]);
+		console.log(gameState.teamStates.home[i].coord);
+	
 		h.push(gameState.teamStates.home[i].coord);
-		h.push(gameState.teamStates.away[i].coord);
+		a.push(gameState.teamStates.away[i].coord);
 	
 	teams = [h, a];
 	
-	console.log("teams");
 	console.log(gameState.teamStates.home);
 	console.log(gameState.teamStates.home);
 	console.log(teams);
