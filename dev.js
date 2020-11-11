@@ -19,6 +19,9 @@ function main(gameState, side) {
 	//console.log(value(gameState, side));
 	//console.log("RETURN");
 	//console.log(minimax(gameState, allMoves, side));
+	console.log("in main");
+	console.log(gameState);
+	getGameState(gameState, [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side)
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
@@ -109,34 +112,39 @@ function getGameState(gameState, move){
 	//determines what the state of the board will be after a valid move set
 	//should take in array of length 3
 	//board = gameState.tileStates;
-	board = []
-	i = 0;
-	for (let row of gameState.tileStates) {
-		board.push([]);
-		for (let col of row){
-			board[i].push(col);
+	
+	for (i = toMoveStart; i < toMoveStart + move.length; i++){
+		if (side == 'home'){
+			if (move[i] == 'north') {
+				gameState.tileStates[--gameState.teamStates.home[i].coord[0]-1][gameState.teamStates.home[i].coord[1]] -= 1;
+			}else if (move[i] == 'south') {
+				gameState.tileStates[++gameState.teamStates.home[i].coord[0]+1][gameState.teamStates.home[i].coord[1]] -= 1;
+			}else if (move[i] == 'west') {
+				gameState.tileStates[gameState.teamStates.home[i].coord[0]][--gameState.teamStates.home[i].coord[1]-1] -= 1;
+			}else if (move[i] == 'east') {
+				gameState.tileStates[gameState.teamStates.home[i].coord[0]][++gameState.teamStates.home[i].coord[1]+1] -= 1;
+			}else{
+				gameState.tileStates[gameState.teamStates.home[i].coord[0]][gameState.teamStates.home[i].coord[1]] -= 1;
+			}
 		}
-		i++;
-	}
-
-	if (side == 'home'){
-		monsters = gameState.teamStates.home;
-	}else{
-		monsters = gameState.teamStates.away;
-	}
-	for (i = 0; i < 3; i++){
-		if (move[i] == 'north') {
-			board[monsters[i].coord[0]-1][monsters[i].coord[1]] -= 1;
-		}else if (move[i] == 'south') {
-			board[monsters[i].coord[0]+1][monsters[i].coord[1]] -= 1;
-		}else if (move[i] == 'west') {
-			board[monsters[i].coord[0]][monsters[i].coord[1]-1] -= 1;
-		}else if (move[i] == 'east') {
-			board[monsters[i].coord[0]][monsters[i].coord[1]+1] -= 1;
-		}else{
-			board[monsters[i].coord[0]][monsters[i].coord[1]] -= 1;
+		else{
+			if (move[i] == 'north') {
+				gameState.tileStates[--gameState.teamStates.away[i].coord[0]-1][gameState.teamStates.away[i].coord[1]] -= 1;
+			}else if (move[i] == 'south') {
+				gameState.tileStates[++gameState.teamStates.away[i].coord[0]+1][gameState.teamStates.away[i].coord[1]] -= 1;
+			}else if (move[i] == 'west') {
+				gameState.tileStates[gameState.teamStates.away[i].coord[0]][--gameState.teamStates.away[i].coord[1]-1] -= 1;
+			}else if (move[i] == 'east') {
+				gameState.tileStates[gameState.teamStates.away[i].coord[0]][++gameState.teamStates.away[i].coord[1]+1] -= 1;
+			}else{
+				gameState.tileStates[gameState.teamStates.away[i].coord[0]][gameState.teamStates.away[i].coord[1]] -= 1;
+			}
 		}
 	}
+	//gameState.teamStates.home = 
+	console.log("in getGameState");
+	console.log(gameState);
+	return gameState;
 	
 }
 function getRegionValue(board, i, j){
@@ -195,8 +203,14 @@ function getRegionValue(board, i, j){
 }
 function minimax(gameState, possibleMoves, side, depth){
 	//to be implemented, use the best n moves from the combineArr paired with getGameState
+	moveValues = []
+	if (possibleMoves.length == 6){
+		//if this is the start of a move
+		if (side == 'home'){
+			
+		}
+	}
 	if (side === 'home'){
-		
 		return [possibleMoves[0][1], possibleMoves[1][1], possibleMoves[2][1]];
 	}
 	else{
