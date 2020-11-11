@@ -30,7 +30,8 @@ function main(gameState, side) {
 	}
 	teams = [h, a];
 	
-	allMoves = getValidMoves([board, teams])
+	allMoves = getValidMoves([board, teams]);
+	test = combineArr(allMoves);
 	/*
 	for (let member of gameState.teamStates.home){
 		//get moves for home team
@@ -54,8 +55,12 @@ function main(gameState, side) {
 	//console.log(gameState.teamStates.home);
 	//console.log(teams);
 	//console.log(gameState);
-	console.log("calling minimax, good luck to me");
-	return minimax([board, teams], allMoves, side);
+	console.log(gameState);
+	a = getGameState([board, teams], test[0], side);
+	console.log(a)
+	
+	//console.log("calling minimax, good luck to me");
+	//return minimax([board, teams], allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
 
@@ -173,10 +178,10 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 	//determines what the state of the board will be after a valid move set
 	//should take in array of length 3
 	board = gameState.tileStates;
-	console.log("in getGameState");
-	console.log(gameState);
-	console.log(move);
-	console.log(side);
+	//console.log("in getGameState");
+	//console.log(gameState);
+	//console.log(move);
+	//console.log(side);
 	for (i = toMoveStart; i < toMoveStart + move.length; i++){
 		//console.log("in loop");
 		//console.log(gameState);
@@ -289,10 +294,10 @@ function getRegionValue(board, i, j){
 	return (x+1)*(y+1);
 }
 function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
-	console.log("minimax start");
-	console.log(gameState);
-	console.log(possibleMoves);
-	console.log(side);
+	//console.log("minimax start");
+	//console.log(gameState);
+	//console.log(possibleMoves);
+	//console.log(side);
 	moveValues = [];
 	if (possibleMoves.length == 6){
 		//if this is the start of a move
@@ -301,7 +306,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			allMoves = combineArr(possibleMoves.slice(0,3));
 			for (let move of allMoves){
 				//should be [moveVal, move], and allow for easy sorting. gets value for current side
-				console.log(move);
+				//console.log(move);
 				moveValues.push([value(getGameState(gameState, move, side)), move]);
 			}
 			
