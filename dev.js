@@ -74,25 +74,29 @@ function getValidMoves(gameState){
 
 	for (i = 0; i < 2; i++){
 		for (let member of gameState[1][i]){
+			move = [];
 			if (member[3]){
 				//member is dead
-				moves.push('none');
+				move.push('none');
 			}else{
-				moves.push('none');
+				move.push('none');
 				const [row, col] = [member[0], member[1]];
 				if ((row > 0) && board[row-1][col] > 1){
-					moves.push('north');
+					move.push('north');
 				}
 				if ((row < rowSize - 1) && board[row+1][col] > 1){
-					moves.push('south');
+					move.push('south');
 				}
 				if ((col > 0) && board[row][col-1] > 1) {
-					moves.push('west');
+					move.push('west');
 				}
 				if ((col < colSize - 1) && board[row][col+1] > 1) {
-					moves.push('east');
+					move.push('east');
 				}
-			}	
+			}
+			moves.push(move);
+			console.log("moves");
+			console.log(moves);
 		}
 	}
 
