@@ -112,7 +112,9 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 	//determines what the state of the board will be after a valid move set
 	//should take in array of length 3
 	//board = gameState.tileStates;
-	
+	console.log("in getGameState");
+	console.log(gameState);
+	console.log(move);
 	for (i = toMoveStart; i < toMoveStart + move.length; i++){
 		if (side == 'home'){
 			if (move[i] == 'north') {
@@ -142,8 +144,7 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 		}
 	}
 	//gameState.teamStates.home = 
-	console.log("in getGameState");
-	console.log(gameState);
+
 	return gameState;
 	
 }
