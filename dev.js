@@ -29,7 +29,7 @@ function main(gameState, side) {
 	b = [[],[],[],[],[],[],[]];
 	for (i = 0; i < gameState.tileStates; i++){
 		for (j = 0; j < gameState.tileStates[i]; j++){
-			b.push(gameState.tileStates[i][j]);
+			b[i].push(gameState.tileStates[i][j]);
 		}
 	}
 	console.log(b);
