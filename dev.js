@@ -177,7 +177,7 @@ function value(gameState, side){
 function getGameState(gameState, move, side = ""){
 	//determines what the state of the board will be after a valid move set
 	//should take in array of length 3
-	board = gameState.tileStates;
+	//board = gameState[0];
 	//console.log("in getGameState");
 	//console.log(gameState);
 	//console.log(move);
@@ -226,11 +226,12 @@ function getGameState(gameState, move, side = ""){
 					gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]] -= 1;
 				}
 			}
-			if (side == 'home'){
-				side = 'away';
-			}else{
-				side = 'home';
-			}
+
+		}
+		if (side == 'home'){
+			side = 'away';
+		}else{
+			side = 'home';
 		}
 	}
 	/*
