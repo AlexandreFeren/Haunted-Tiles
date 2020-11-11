@@ -2,22 +2,8 @@ function main(gameState, side) {
 	const myTeam = gameState.teamStates[side];
 	const [rowSize, colSize] = gameState.boardSize;
 	const possibleMoves = [];
-	allMoves = [];	//possible moves for all 6 monsters
-	for (let member of gameState.teamStates.home){
-		//get moves for home team
-		//console.log(member);
-		//console.log(home.getOwnPropertyNames());
-		allMoves.push(getValidMoves(gameState, member))
-	}
-	for (let member of gameState.teamStates.away){
-		//get moves for away team
-		allMoves.push(getValidMoves(gameState, member))
-	}
-	//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
-	//the actual return value will depend on which side you are playing for
+	//allMoves = [];	//possible moves for all 6 monsters
 	
-	console.log("in main");
-
 	b = [[],[],[],[],[],[],[]];
 	for (i = 0; i < gameState.tileStates.length; i++){
 		for (j = 0; j < gameState.tileStates[i].length; j++){
@@ -38,9 +24,31 @@ function main(gameState, side) {
 		//console.log(gameState.teamStates.home[i].coord);
 	
 		h.push(gameState.teamStates.home[i].coord);
+		h.push(gameState.teamStates.home[i].isDead);
 		a.push(gameState.teamStates.away[i].coord);
+		h.push(gameState.teamStates.away[i].isDead);
 	}
 	teams = [h, a];
+	
+	allMoves = getValidMoves([b, teams])
+	/*
+	for (let member of gameState.teamStates.home){
+		//get moves for home team
+		//console.log(member);
+		//console.log(home.getOwnPropertyNames());
+		allMoves.push(getValidMoves([gameState], member.coord));
+	}
+	for (let member of gameState.teamStates.away){
+		//get moves for away team
+		allMoves.push(getValidMoves(gameState, member))
+	}
+	*/
+	//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
+	//the actual return value will depend on which side you are playing for
+	
+	console.log("in main");
+
+	
 	
 	//console.log(gameState.teamStates.home);
 	//console.log(gameState.teamStates.home);
@@ -51,28 +59,43 @@ function main(gameState, side) {
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
 
-function getValidMoves(gameState, member){
-	const [rowSize, colSize] = gameState.boardSize;
+function getValidMoves(gameState){
+	const [rowSize, colSize] = [gameState[0].length, gameState[0][0].length];
 	moves = []
-	board = gameState.tileStates;
-	if (member.isDead){
-		moves.push('none');
-	}else{
-		moves.push('none');
-		const [row, col] = member.coord;
-		if ((row > 0) && board[row-1][col] > 1){
-			moves.push('north');
-		}
-		if ((row < rowSize - 1) && board[row+1][col] > 1){
-			moves.push('south');
-		}
-		if ((col > 0) && board[row][col-1] > 1) {
-			moves.push('west');
-		}
-		if ((col < colSize - 1) && board[row][col+1] > 1) {
-			moves.push('east');
+	board = gameState[0];
+	for (i = 0; i < gameState[1].length; i++){
+		for (let member of gameState[1][i]){
+			
 		}
 	}
+	//loop through home
+	
+	//loop through away
+
+	for (i = 0; i < 2; i++){
+		for (let member of gameState[1][i]){
+			if (member[3]){
+				//member is dead
+				moves.push('none');
+			}else{
+				moves.push('none');
+				const [row, col] = [member[0], member[1]];
+				if ((row > 0) && board[row-1][col] > 1){
+					moves.push('north');
+				}
+				if ((row < rowSize - 1) && board[row+1][col] > 1){
+					moves.push('south');
+				}
+				if ((col > 0) && board[row][col-1] > 1) {
+					moves.push('west');
+				}
+				if ((col < colSize - 1) && board[row][col+1] > 1) {
+					moves.push('east');
+				}
+			}	
+		}
+	}
+
 	return moves;
 }
 
