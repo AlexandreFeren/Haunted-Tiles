@@ -140,14 +140,13 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 	//console.log("in getGameState");
 	//console.log(gameState);
 	//console.log(move);
-	console.log("from teams, home, 1st member hopefully. Expecting [0, 0] probably");
-	console.log(gameState[1][0][0]);
-	console.log(teams);
+	//console.log("from teams, home, 1st member hopefully. Expecting [0, 0] probably");
+	//console.log(gameState[1][0][0]);
+	//console.log(teams);
 	for (i = toMoveStart; i < toMoveStart + move.length; i++){
 		//console.log("in loop");
 		//console.log(gameState);
 		//console.log(gameState[1][0][i]);
-
 		if (side == 'home' || side == ""){
 			//console.log(gameState[1][0][1]);
 			//console.log(gameState[0][gameState[1][0][i].coord[0]][gameState[1][0][i].coord[1]]);
@@ -155,11 +154,11 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 				gameState[0][gameState[1][0][i][0]-1][gameState[1][0][i][1]] -= 1;
 				gameState[1][0][i][0]--;
 			}else if (move[i] == 'south') {
-				console.log(gameState[0]);
-				console.log(gameState[1][0][i]);
 				gameState[0][gameState[1][0][i][0]+1][gameState[1][0][i][1]] -= 1;
 				gameState[1][0][i][0]++;
 			}else if (move[i] == 'west') {
+				console.log(gameState[0]);
+				console.log(gameState[1][0][i]);
 				gameState[0][gameState[1][0][i][0]][gameState[1][0][i].coord[1]-1] -= 1;
 				gameState[1][0][i][1]--;
 			}else if (move[i] == 'east') {
