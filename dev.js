@@ -21,24 +21,6 @@ function main(gameState, side) {
 	//console.log(minimax(gameState, allMoves, side));
 	console.log("in main");
 	console.log(gameState);
-	/*
-	tiles = [];
-	
-	for i in range(len(gameState.tileStates)){
-		tiles.push([]);
-		for j in range(len(gameState.tileStates[i])){
-			tiles[i].push(gameState.tileStates[i][j]);	
-		}
-	}
-	teams = [];
-	for (i = 0; i < 3; i++){
-		teams[0].push(gameState.teamStates.home.coord);
-	}
-	for (i = 0; i < 3; i++){
-		teams[1].push(gameState.teamStates.away.coord);
-	}	
-	*/
-	//console.log(getGameState([gameState.tileStates, ], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
 	console.log(getGameState([gameState.tileStates, [gameState.teamStates.home, gameState.teamStates.away]], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
@@ -139,13 +121,9 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 		//console.log(gameState[1][0][i]);
 
 		if (side == 'home' || side == ""){
-			console.log("home");
 			if (move[i] == 'north') {
-				console.log("hoping for a change");
-				console.log(gameState);
 				gameState[0][gameState[1][0][i].coord[0]-1][gameState[1][0][i].coord[1]] -= 1;
 				gameState[1][0][i].coord[0]--;
-				console.log(gameState);
 			}else if (move[i] == 'south') {
 				gameState[0][gameState[1][0][i].coord[0]+1][gameState[1][0][i].coord[1]] -= 1;
 				gameState[1][0][i].coord[0]++;
@@ -160,7 +138,6 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 			}
 		}
 		if (side == 'away' || side == ""){
-			console.log("away");
 			if (move[i] == 'north') {
 				gameState[0][gameState[1][1][i].coord[0]-1][gameState[1][1][i].coord[1]] -= 1;
 				gameState[1][1][i].coord[0]--;
