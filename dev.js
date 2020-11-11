@@ -118,26 +118,26 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 	for (i = toMoveStart; i < toMoveStart + move.length; i++){
 		if (side == 'home'){
 			if (move[i] == 'north') {
-				gameState.tileStates[--gameState.teamStates.home[i].coord[0]-1][gameState.teamStates.home[i].coord[1]] -= 1;
+				gameState.tileStates[gameState.teamStates.home[i].coord[0]-1][gameState.teamStates.home[i].coord[1]] -= 1;
 			}else if (move[i] == 'south') {
-				gameState.tileStates[++gameState.teamStates.home[i].coord[0]+1][gameState.teamStates.home[i].coord[1]] -= 1;
+				gameState.tileStates[gameState.teamStates.home[i].coord[0]+1][gameState.teamStates.home[i].coord[1]] -= 1;
 			}else if (move[i] == 'west') {
-				gameState.tileStates[gameState.teamStates.home[i].coord[0]][--gameState.teamStates.home[i].coord[1]-1] -= 1;
+				gameState.tileStates[gameState.teamStates.home[i].coord[0]][gameState.teamStates.home[i].coord[1]-1] -= 1;
 			}else if (move[i] == 'east') {
-				gameState.tileStates[gameState.teamStates.home[i].coord[0]][++gameState.teamStates.home[i].coord[1]+1] -= 1;
+				gameState.tileStates[gameState.teamStates.home[i].coord[0]][gameState.teamStates.home[i].coord[1]+1] -= 1;
 			}else{
 				gameState.tileStates[gameState.teamStates.home[i].coord[0]][gameState.teamStates.home[i].coord[1]] -= 1;
 			}
 		}
 		else{
 			if (move[i] == 'north') {
-				gameState.tileStates[--gameState.teamStates.away[i].coord[0]-1][gameState.teamStates.away[i].coord[1]] -= 1;
+				gameState.tileStates[gameState.teamStates.away[i].coord[0]-1][gameState.teamStates.away[i].coord[1]] -= 1;
 			}else if (move[i] == 'south') {
-				gameState.tileStates[++gameState.teamStates.away[i].coord[0]+1][gameState.teamStates.away[i].coord[1]] -= 1;
+				gameState.tileStates[gameState.teamStates.away[i].coord[0]+1][gameState.teamStates.away[i].coord[1]] -= 1;
 			}else if (move[i] == 'west') {
-				gameState.tileStates[gameState.teamStates.away[i].coord[0]][--gameState.teamStates.away[i].coord[1]-1] -= 1;
+				gameState.tileStates[gameState.teamStates.away[i].coord[0]][gameState.teamStates.away[i].coord[1]-1] -= 1;
 			}else if (move[i] == 'east') {
-				gameState.tileStates[gameState.teamStates.away[i].coord[0]][++gameState.teamStates.away[i].coord[1]+1] -= 1;
+				gameState.tileStates[gameState.teamStates.away[i].coord[0]][gameState.teamStates.away[i].coord[1]+1] -= 1;
 			}else{
 				gameState.tileStates[gameState.teamStates.away[i].coord[0]][gameState.teamStates.away[i].coord[1]] -= 1;
 			}
