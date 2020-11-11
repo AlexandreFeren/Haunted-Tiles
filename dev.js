@@ -21,22 +21,24 @@ function main(gameState, side) {
 	//console.log(minimax(gameState, allMoves, side));
 	console.log("in main");
 	console.log(gameState);
+	/*
 	tiles = [];
+	
 	for i in range(len(gameState.tileStates)){
 		tiles.push([]);
 		for j in range(len(gameState.tileStates[i])){
 			tiles[i].push(gameState.tileStates[i][j]);	
 		}
 	}
-	teams = [[],[]];
+	teams = [];
 	for (i = 0; i < 3; i++){
 		teams[0].push(gameState.teamStates.home.coord);
 	}
 	for (i = 0; i < 3; i++){
 		teams[1].push(gameState.teamStates.away.coord);
 	}	
-	
-	console.log(getGameState([tiles, teams], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
+	*/
+	//console.log(getGameState([gameState.tileStates, ], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
