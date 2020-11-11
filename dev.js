@@ -116,6 +116,7 @@ function value(gameState, side){
 	val = 0;
 	teams = gameState[1];
 	for (i = 0; i < 3; i++){
+		//check death status for each team
 		if (teams[0][i][2]){
 			val -= 1000;
 		}
@@ -140,8 +141,8 @@ function value(gameState, side){
 		//console.log(gameState);
 		
 		//get value of the region for each piece
-		val += getRegionValue(gameState[0], teams[0][i][0], teams.home[i][1]);	
-		val -= getRegionValue(gameState[0], teams[0][i][0], teams.away[i][1]);	
+		val += getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]);	
+		val -= getRegionValue(gameState[0], teams[0][i][0], teams[1][i][1]);	
 	}
 
 	//get distance to nearest enemy. Since this is roughly equal for each team, it will be set based on team affiliation
