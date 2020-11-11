@@ -27,7 +27,10 @@ function main(gameState, side) {
 	//console.log(b);
 	
 	teams = [gameState.teamStates.home.coord, gameState.teamStates.away.coord];
+	
 	console.log("teams");
+	console.log(gameState.teamStates.home.coord);
+	console.log(gameState.teamStates.away.coord);	
 	console.log(teams);
 	console.log(gameState);
 	console.log(getGameState([b, teams], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
