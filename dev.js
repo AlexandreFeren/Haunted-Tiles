@@ -16,9 +16,9 @@ function main(gameState, side) {
 	//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
 	//the actual return value will depend on which side you are playing for
 	//console.log(gameState.tileStates);
-	console.log(value(gameState, side));
-	console.log("RETURN");
-	console.log(minimax(gameState, allMoves, side));
+	//console.log(value(gameState, side));
+	//console.log("RETURN");
+	//console.log(minimax(gameState, allMoves, side));
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
@@ -77,8 +77,8 @@ function value(gameState, side){
 	}
 	*/
 	for (i = 0; i < 3; i++){
-		console.log("Game State:");
-		console.log(gameState);
+		//console.log("Game State:");
+		//console.log(gameState);
 		val += getRegionValue(gameState.tileStates, teams.home[i].coord[0], teams.home[i].coord[1]);	
 		val -= getRegionValue(gameState.tileStates, teams.away[i].coord[0], teams.away[i].coord[1]);	
 	}
@@ -113,8 +113,8 @@ function getRegionValue(board, i, j){
 	//very much an approximation for efficiency's sake
 	x = 0;
 	y = 0;
-	console.log("board");
-	console.log(board);
+	//console.log("board");
+	//console.log(board);
 	if (i < 0 || i >= board.length){
 		return 0;
 	}
