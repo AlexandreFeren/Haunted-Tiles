@@ -34,7 +34,9 @@ function main(gameState, side) {
 	}
 	console.log(b);
 	
-	console.log(getGameState([b, [gameState.teamStates.home, gameState.teamStates.away]], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
+	teams = [gameState.teamStates.home, gameState.teamStates.away];
+	
+	console.log(getGameState([b, teams], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
@@ -134,6 +136,8 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 		//console.log(gameState[1][0][i]);
 
 		if (side == 'home' || side == ""){
+			console.log(gameState[1][0][1]);
+			console.log(gameState[0][gameState[1][0][i].coord[0]][gameState[1][0][i].coord[1]]);
 			if (move[i] == 'north') {
 				gameState[0][gameState[1][0][i].coord[0]-1][gameState[1][0][i].coord[1]] -= 1;
 				gameState[1][0][i].coord[0]--;
