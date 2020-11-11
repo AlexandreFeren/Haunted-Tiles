@@ -187,6 +187,10 @@ function getGameState(gameState, move, side = ""){
 		//console.log(gameState);
 		//console.log(gameState[1][0][i]);
 		if (side == 'home' || side == "") {
+			console.log("side = home");
+			console.log(gameState[1][(0+Math.floor(move.length/3))%2][i]);
+			console.log();
+			console.log(gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]-1]);
 			if (move[i] == 'north') {
 				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]-1][gameState[1][(0+Math.floor(move.length/3))%2][i][1]] -= 1;
 				gameState[1][0][i][0]--;
