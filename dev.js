@@ -26,13 +26,13 @@ function main(gameState, side) {
 	//b[0][0] = -1;
 	//console.log("testing board copy");
 	//console.log(b);
-	b = []
+	b = [[],[],[],[],[],[],[]];
 	for (i = 0; i < gameState.tileStates; i++){
-		b.push([]);
 		for (j = 0; j < gameState.tileStates[i]; j++){
 			b.push(gameState.tileStates[i][j]);
 		}
 	}
+	console.log(b);
 	
 	console.log(getGameState([b, [gameState.teamStates.home, gameState.teamStates.away]], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
 	return minimax(gameState, allMoves, side);
