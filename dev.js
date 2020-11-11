@@ -31,7 +31,7 @@ function main(gameState, side) {
 	teams = [h, a];
 	
 	allMoves = getValidMoves([board, teams]);
-	test = combineArr(allMoves);
+	//test = combineArr(allMoves);
 	/*
 	for (let member of gameState.teamStates.home){
 		//get moves for home team
@@ -56,15 +56,15 @@ function main(gameState, side) {
 	//console.log(teams);
 	//console.log(gameState);
 	//console.log(gameState);
-	console.log(test[0]);
-	console.log(gameState.tileStates);
-	console.log(test[0].slice(0,3));
-	a = getGameState([board, teams], test[0].slice(0, 3), side);
-	console.log(a)
+	//console.log(test[0]);
+	//console.log(gameState.tileStates);
+	//console.log(test[0].slice(0,3));
+	//a = getGameState([board, teams], test[0].slice(0, 3), side);
+	//console.log(a)
 	//a = getGameState([board, teams], test[0].slice(0, 3), side
 	
-	//console.log("calling minimax, good luck to me");
-	//return minimax([board, teams], allMoves, side)[1];
+	console.log("calling minimax, good luck to me");
+	return minimax([board, teams], allMoves, side)[1];
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
 
