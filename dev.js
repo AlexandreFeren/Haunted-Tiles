@@ -58,6 +58,7 @@ function main(gameState, side) {
 	//console.log(gameState);
 	console.log(test[0]);
 	console.log(gameState.tileStates);
+	console.log(test[0].slice(0,3));
 	a = getGameState([board, teams], test[0].slice(0, 3), side);
 	console.log(a)
 	//a = getGameState([board, teams], test[0].slice(0, 3), side
