@@ -26,7 +26,7 @@ function main(gameState, side) {
 	}
 	//console.log(b);
 	
-	teams = [gameState.teamStates.home, gameState.teamStates.away];
+	teams = [gameState.teamStates.home.coord, gameState.teamStates.away.coord];
 	console.log(gameState);
 	console.log(getGameState([b, teams], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
 	return minimax(gameState, allMoves, side);
@@ -131,36 +131,36 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 			//console.log(gameState[1][0][1]);
 			//console.log(gameState[0][gameState[1][0][i].coord[0]][gameState[1][0][i].coord[1]]);
 			if (move[i] == 'north') {
-				gameState[0][gameState[1][0][i].coord[0]-1][gameState[1][0][i].coord[1]] -= 1;
+				gameState[0][gameState[1][0][i][0]-1][gameState[1][0][i][1]] -= 1;
 				gameState[1][0][i].coord[0]--;
 			}else if (move[i] == 'south') {
-				gameState[0][gameState[1][0][i].coord[0]+1][gameState[1][0][i].coord[1]] -= 1;
+				gameState[0][gameState[1][0][i][0]+1][gameState[1][0][i][1]] -= 1;
 				gameState[1][0][i].coord[0]++;
 			}else if (move[i] == 'west') {
-				gameState[0][gameState[1][0][i].coord[0]][gameState[1][0][i].coord[1]-1] -= 1;
+				gameState[0][gameState[1][0][i][0]][gameState[1][0][i].coord[1]-1] -= 1;
 				gameState[1][0][i].coord[1]--;
 			}else if (move[i] == 'east') {
-				gameState[0][gameState[1][0][i].coord[0]][gameState[1][0][i].coord[1]+1] -= 1;
+				gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]+1] -= 1;
 				gameState[1][0][i].coord[1]++;
 			}else{
-				gameState[0][gameState[1][0][i].coord[0]][gameState[1][0][i].coord[1]] -= 1;
+				gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]] -= 1;
 			}
 		}
 		if (side == 'away' || side == ""){
 			if (move[i] == 'north') {
-				gameState[0][gameState[1][1][i].coord[0]-1][gameState[1][1][i].coord[1]] -= 1;
+				gameState[0][gameState[1][1][i][0]-1][gameState[1][1][i][1]] -= 1;
 				gameState[1][1][i].coord[0]--;
 			}else if (move[i] == 'south') {
-				gameState[0][gameState[1][1][i].coord[0]+1][gameState[1][1][i].coord[1]] -= 1;
+				gameState[0][gameState[1][1][i][0]+1][gameState[1][1][i][1]] -= 1;
 				gameState[1][1][i].coord[0]++;
 			}else if (move[i] == 'west') {
-				gameState[0][gameState[1][1][i].coord[0]][gameState[1][1][i].coord[1]-1] -= 1;
+				gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]-1] -= 1;
 				gameState[1][1][i].coord[1]--;
 			}else if (move[i] == 'east') {
-				gameState[0][gameState[1][1][i].coord[0]][gameState[1][1][i].coord[1]+1] -= 1;
+				gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]+1] -= 1;
 				gameState[1][1][i].coord[1]++;
 			}else{
-				gameState[0][gameState[1][1][i].coord[0]][gameState[1][1][i].coord[1]] -= 1;
+				gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]] -= 1;
 			}
 		}
 	}
