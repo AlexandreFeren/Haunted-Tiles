@@ -21,7 +21,7 @@ function main(gameState, side) {
 	//console.log(minimax(gameState, allMoves, side));
 	console.log("in main");
 	console.log(gameState);
-	tiles = []
+	tiles = [];
 	for i in range(len(gameState.tileStates)){
 		tiles.push([]);
 		for j in range(len(gameState.tileStates[i])){
