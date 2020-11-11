@@ -57,6 +57,7 @@ function value(gameState, side){
 		}
 	}
 	
+	/*
 	//get distance from center, this should be member.coord manhattan distance to board[3][3]
 	for (i = 0; i < 3; i++){
 		if (!teams.home[i].isDead){
@@ -66,7 +67,7 @@ function value(gameState, side){
 			val += Math.abs(teams.away[i].coord[0] - 3) + Math.abs(teams.away[i].coord[1] - 3);
 		}
 	}
-
+	*/
 	for (i = 0; i < 3; i++){
 		console.log("Game State:");
 		console.log(gameState);
@@ -95,8 +96,9 @@ function value(gameState, side){
 		
 	return val;
 }
-function getGameState(gameState, moves){
+function getGameState(gameState, move){
 	//determines what the state of the board will be after a valid move set
+	
 }
 function getRegionValue(board, i, j){
 	//determines the size of an area that a monster is in using the location it is at.
