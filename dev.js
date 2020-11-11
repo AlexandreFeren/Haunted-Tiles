@@ -390,7 +390,6 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			moveValues.push([value(getGameState(gameState, move, side)), move]);
 		}
 		if (side == 'home'){
-			side = 'away';
 			moveValues.sort();
 			if (maxDepth > depth){
 				moveValues = moveValues.slice(moveValues.length - Math.ceil(moveValues.length/10), moveValues.length);
@@ -399,7 +398,8 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 				for (i = 0; i < moveValues.length; i++){
 					//for each possible move, call minimax with the updated game state, remainimg possible moves, opposite side, and depth params.
 					state = getGameState(gameState, moveValues[i][1], side)
-					moveValues[i][0] = minimax(state, getPossibleMoves(state), side, maxDepth, depth + 1)[0]; //first ind, as that is value.
+
+					moveValues[i][0] = minimax(state, getPossibleMoves(state), 'away', maxDepth, depth + 1)[0]; //first ind, as that is value.
 				}
 				moveValues.sort();
 				//call minimax with the next game state and increment the depth. uses the value found to be max by minimax
@@ -411,7 +411,6 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			}
 			//return minimax(getGameState(gameState, move, side), possibleMoves.slice(3, 6), 'away', maxDepth, depth + 1);
 		}else{
-			side = 'home';
 
 			moveValues.sort();
 			if (maxDepth > depth){
@@ -421,7 +420,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 				for (i = 0; i < moveValues.length; i++){
 					//for each possible move, call minimax with the updated game state, remainimg possible moves, opposite side, and depth params.
 					state = getGameState(gameState, moveValues[i][1], side)
-					moveValues[i][0] = minimax(state, getPossibleMoves(state), side, maxDepth, depth + 1)[0]; //first ind, as that is value.
+					moveValues[i][0] = minimax(state, getPossibleMoves(state), 'home', maxDepth, depth + 1)[0]; //first ind, as that is value.
 				}
 				moveValues.sort();
 				//call minimax with the next game state and increment the depth. uses the value found to be max by minimax
