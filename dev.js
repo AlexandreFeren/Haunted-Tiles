@@ -56,8 +56,11 @@ function main(gameState, side) {
 	//console.log(teams);
 	//console.log(gameState);
 	//console.log(gameState);
+	console.log(test[0]);
+	console.log(board);
 	a = getGameState([board, teams], test[0].slice(0, 3), side);
 	console.log(a)
+	//a = getGameState([board, teams], test[0].slice(0, 3), side
 	
 	//console.log("calling minimax, good luck to me");
 	//return minimax([board, teams], allMoves, side)[1];
@@ -68,11 +71,7 @@ function getValidMoves(gameState){
 	const [rowSize, colSize] = [gameState[0].length, gameState[0][0].length];
 	moves = []
 	board = gameState[0];
-	for (i = 0; i < gameState[1].length; i++){
-		for (let member of gameState[1][i]){
-			
-		}
-	}
+
 	//loop through home
 	
 	//loop through away
@@ -81,7 +80,7 @@ function getValidMoves(gameState){
 	for (i = 0; i < 2; i++){
 		for (let member of gameState[1][i]){
 			move = [];
-			if (member[3]){
+			if (member[2]){
 				//console.log("isDead");
 				//console.log(member[3]);
 				//member is dead
