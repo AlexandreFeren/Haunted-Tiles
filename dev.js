@@ -22,6 +22,7 @@ function main(gameState, side) {
 	console.log("in main");
 	console.log(gameState);
 	b = gameState.tileStates;
+	console.log(b);
 	b[0][0] = -1;
 	console.log("testing board copy");
 	console.log(b);
