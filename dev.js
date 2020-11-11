@@ -118,7 +118,7 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 	for (i = toMoveStart; i < toMoveStart + move.length; i++){
 		console.log("in loop");
 		console.log(gameState);
-		console.log(gameState[0][0][i]);
+		console.log(gameState[1][0][i]);
 
 		if (side == 'home' || side == ""){
 			if (move[i] == 'north') {
