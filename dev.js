@@ -157,9 +157,7 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 				gameState[0][gameState[1][0][i][0]+1][gameState[1][0][i][1]] -= 1;
 				gameState[1][0][i][0]++;
 			}else if (move[i] == 'west') {
-				console.log(gameState[0]);
-				console.log(gameState[1][0][i]);
-				gameState[0][gameState[1][0][i][0]][gameState[1][0][i].coord[1]-1] -= 1;
+				gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]-1] -= 1;
 				gameState[1][0][i][1]--;
 			}else if (move[i] == 'east') {
 				gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]+1] -= 1;
