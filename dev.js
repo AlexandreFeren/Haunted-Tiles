@@ -182,7 +182,7 @@ function getGameState(gameState, move, side = ""){
 	console.log(gameState);
 	console.log(move);
 	console.log(side);
-	for (j = 0; j < Math.floor(move.length/3; j++){
+	for (j = 0; j < Math.floor(move.length/3); j++){
 		for (i = 0; i < 3; i++){
 			//console.log("in loop");
 			//console.log(gameState);
