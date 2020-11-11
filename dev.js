@@ -39,6 +39,7 @@ function main(gameState, side) {
 	}	
 	*/
 	//console.log(getGameState([gameState.tileStates, ], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
+	console.log(getGameState([gameState.tileStates, [gameState.teamStates.home, gameState.teamStates.away]], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
 	return minimax(gameState, allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
