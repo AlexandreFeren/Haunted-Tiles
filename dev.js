@@ -182,47 +182,54 @@ function getGameState(gameState, move, side = ""){
 	console.log(gameState);
 	console.log(move);
 	console.log(side);
-	for (i = 0; i < move.length; i++){
-		//console.log("in loop");
-		//console.log(gameState);
-		//console.log(gameState[1][0][i]);
-		if (side == 'home' || side == "") {
-			console.log("side = home");
-			console.log(gameState[1][(0+Math.floor(move.length/3))%2][i]);
-			console.log(gameState[0][0][0]);
-			console.log(gameState[1][(0+Math.floor(move.length/3))%2][i][0]);
-			console.log(gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]-1]);
-			if (move[i] == 'north') {
-				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]-1][gameState[1][(0+Math.floor(move.length/3))%2][i][1]] -= 1;
-				gameState[1][0][i][0]--;
-			}else if (move[i] == 'south') {
-				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]+1][gameState[1][(0+Math.floor(move.length/3))%2][i][1]] -= 1;
-				gameState[1][0][i][0]++;
-			}else if (move[i] == 'west') {
-				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]][gameState[1][(0+Math.floor(move.length/3))%2][i][1]-1] -= 1;
-				gameState[1][0][i][1]--;
-			}else if (move[i] == 'east') {
-				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]][gameState[1][(0+Math.floor(move.length/3))%2][i][1]+1] -= 1;
-				gameState[1][0][i][1]++;
-			}else{
-				gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]][gameState[1][(0+Math.floor(move.length/3))%2][i][1]] -= 1;
+	for (j = 0; j < Math.floor(move.length/3){
+		for (i = 0; i < 3; i++){
+			//console.log("in loop");
+			//console.log(gameState);
+			//console.log(gameState[1][0][i]);
+			if (side == 'home' || side == "") {
+				console.log("side = home");
+				//console.log(gameState[1][(0+Math.floor(move.length/3))%2][i]);
+				//console.log(gameState[0][0][0]);
+				//console.log(gameState[1][(0+Math.floor(move.length/3))%2][i][0]);
+				//console.log(gameState[0][gameState[1][(0+Math.floor(move.length/3))%2][i][0]]);
+				if (move[i] == 'north') {
+					gameState[0][gameState[1][0][i][0]-1][gameState[1][0][i][1]] -= 1;
+					gameState[1][0][i][0]--;
+				}else if (move[i] == 'south') {
+					gameState[0][gameState[1][0][i][0]+1][gameState[1][0][i][1]] -= 1;
+					gameState[1][0][i][0]++;
+				}else if (move[i] == 'west') {
+					gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]-1] -= 1;
+					gameState[1][0][i][1]--;
+				}else if (move[i] == 'east') {
+					gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]+1] -= 1;
+					gameState[1][0][i][1]++;
+				}else{
+					gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]] -= 1;
+				}
 			}
-		}
-		if (side == 'away' || side == ""){
-			if (move[i] == 'north') {
-				gameState[0][gameState[1][(1+Math.floor(move.length/3))%2][i][0]-1][gameState[1][(1+Math.floor(move.length/3))%2][i][1]] -= 1;
-				gameState[1][1][i][0]--;
-			}else if (move[i] == 'south') {
-				gameState[0][gameState[1][(1+Math.floor(move.length/3))%2][i][0]+1][gameState[1][(1+Math.floor(move.length/3))%2][i][1]] -= 1;
-				gameState[1][1][i][0]++;
-			}else if (move[i] == 'west') {
-				gameState[0][gameState[1][(1+Math.floor(move.length/3))%2][i][0]][gameState[1][(1+Math.floor(move.length/3))%2][i][1]-1] -= 1;
-				gameState[1][1][i][1]--;
-			}else if (move[i] == 'east') {
-				gameState[0][gameState[1][(1+Math.floor(move.length/3))%2][i][0]][gameState[1][(1+Math.floor(move.length/3))%2][i][1]+1] -= 1;
-				gameState[1][1][i][1]++;
+			if (side == 'away' || side == ""){
+				if (move[i] == 'north') {
+					gameState[0][gameState[1][1][i][0]-1][gameState[1][1][i][1]] -= 1;
+					gameState[1][1][i][0]--;
+				}else if (move[i] == 'south') {
+					gameState[0][gameState[1][1][i][0]+1][gameState[1][1][i][1]] -= 1;
+					gameState[1][1][i][0]++;
+				}else if (move[i] == 'west') {
+					gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]-1] -= 1;
+					gameState[1][1][i][1]--;
+				}else if (move[i] == 'east') {
+					gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]+1] -= 1;
+					gameState[1][1][i][1]++;
+				}else{
+					gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]] -= 1;
+				}
+			}
+			if (side == 'home'){
+				side = 'away';
 			}else{
-				gameState[0][gameState[1][(1+Math.floor(move.length/3))%2][i][0]][gameState[1][(1+Math.floor(move.length/3))%2][i][1]] -= 1;
+				side = 'home';
 			}
 		}
 	}
