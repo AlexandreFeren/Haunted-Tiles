@@ -26,6 +26,7 @@ function main(gameState, side) {
 function getValidMoves(gameState, member){
 	const [rowSize, colSize] = gameState.boardSize;
 	moves = []
+	board = gameState.tileStates;
 	if (member.isDead){
 		moves.push('none');
 	}else{
