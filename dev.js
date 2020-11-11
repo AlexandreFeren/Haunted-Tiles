@@ -178,10 +178,10 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 	//determines what the state of the board will be after a valid move set
 	//should take in array of length 3
 	board = gameState.tileStates;
-	//console.log("in getGameState");
-	//console.log(gameState);
-	//console.log(move);
-	//console.log(side);
+	console.log("in getGameState");
+	console.log(gameState);
+	console.log(move);
+	console.log(side);
 	for (i = toMoveStart; i < toMoveStart + move.length; i++){
 		//console.log("in loop");
 		//console.log(gameState);
