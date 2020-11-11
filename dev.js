@@ -119,16 +119,16 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 		if (side == 'home' || side == ""){
 			if (move[i] == 'north') {
 				gameState[0][gameState[1][0][i].coord[0]-1][gameState[0][0][i].coord[1]] -= 1;
-				gameState[1][0][i].coord[0]--;
+				//gameState[1][0][i].coord[0]--;
 			}else if (move[i] == 'south') {
 				gameState[0][gameState[1][0][i].coord[0]+1][gameState[0][0][i].coord[1]] -= 1;
-				gameState[1][0][i].coord[0]++;
+				//gameState[1][0][i].coord[0]++;
 			}else if (move[i] == 'west') {
 				gameState[0][gameState[1][0][i].coord[0]][gameState[0][0][i].coord[1]-1] -= 1;
-				gameState[1][0][i].coord[1]--;
+				//gameState[1][0][i].coord[1]--;
 			}else if (move[i] == 'east') {
 				gameState[0][gameState[1][0][i].coord[0]][gameState[0][0][i].coord[1]+1] -= 1;
-				gameState[1][0][i].coord[1]++;
+				//gameState[1][0][i].coord[1]++;
 			}else{
 				gameState[0][gameState[1][0][i].coord[0]][gameState[0][0][i].coord[1]] -= 1;
 			}
@@ -136,16 +136,16 @@ function getGameState(gameState, move, side, toMoveStart = 0){
 		if (side == 'away' || side == ""){
 			if (move[i] == 'north') {
 				gameState[0][gameState[1][1][i].coord[0]-1][gameState[0][0][i].coord[1]] -= 1;
-				gameState[1][1][i].coord[0]--;
+				//gameState[1][1][i].coord[0]--;
 			}else if (move[i] == 'south') {
 				gameState[0][gameState[1][1][i].coord[0]+1][gameState[0][0][i].coord[1]] -= 1;
-				gameState[1][1][i].coord[0]++;
+				//gameState[1][1][i].coord[0]++;
 			}else if (move[i] == 'west') {
 				gameState[0][gameState[1][1][i].coord[0]][gameState[0][0][i].coord[1]-1] -= 1;
-				gameState[1][1][i].coord[1]--;
+				//gameState[1][1][i].coord[1]--;
 			}else if (move[i] == 'east') {
 				gameState[0][gameState[1][1][i].coord[0]][gameState[0][0][i].coord[1]+1] -= 1;
-				gameState[1][1][i].coord[1]++;
+				//gameState[1][1][i].coord[1]++;
 			}else{
 				gameState[0][gameState[1][1][i].coord[0]][gameState[0][0][i].coord[1]] -= 1;
 			}
