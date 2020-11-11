@@ -318,7 +318,10 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			allMoves = combineArr(possibleMoves.slice(0,3));
 			for (let move of allMoves){
 				//should be [moveVal, move], and allow for easy sorting. gets value for current side
-				//console.log(move);
+				console.log("minimax line 321");
+				console.log(move);
+				console.log(gameState);
+				console.log(side);
 				moveValues.push([value(getGameState(gameState, move, side)), move]);
 			}
 			
