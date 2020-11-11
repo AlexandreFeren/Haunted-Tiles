@@ -24,9 +24,9 @@ function main(gameState, side) {
 		//console.log(gameState.teamStates.home[i].coord);
 	
 		h.push(gameState.teamStates.home[i].coord);
-		h.push(gameState.teamStates.home[i].isDead);
+		h[i].push(gameState.teamStates.home[i].isDead);
 		a.push(gameState.teamStates.away[i].coord);
-		h.push(gameState.teamStates.away[i].isDead);
+		a[i].push(gameState.teamStates.away[i].isDead);
 	}
 	teams = [h, a];
 	
