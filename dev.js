@@ -4,10 +4,10 @@ function main(gameState, side) {
 	const possibleMoves = [];
 	//allMoves = [];	//possible moves for all 6 monsters
 	
-	b = [[],[],[],[],[],[],[]];
+	board = [[],[],[],[],[],[],[]];
 	for (i = 0; i < gameState.tileStates.length; i++){
 		for (j = 0; j < gameState.tileStates[i].length; j++){
-			b[i].push(gameState.tileStates[i][j]);
+			board[i].push(gameState.tileStates[i][j]);
 		}
 	}
 	
@@ -30,7 +30,7 @@ function main(gameState, side) {
 	}
 	teams = [h, a];
 	
-	allMoves = getValidMoves([b, teams])
+	allMoves = getValidMoves([board, teams])
 	/*
 	for (let member of gameState.teamStates.home){
 		//get moves for home team
@@ -55,7 +55,7 @@ function main(gameState, side) {
 	//console.log(teams);
 	//console.log(gameState);
 	console.log("calling minimax, good luck to me");
-	return minimax(gameState, allMoves, side);
+	return minimax([board, teams], allMoves, side);
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
 
@@ -297,6 +297,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			allMoves = combineArr(possibleMoves.slice(0,3));
 			for (let move of allMoves){
 				//should be [moveVal, move], and allow for easy sorting. gets value for current side
+				console.log(move);
 				moveValues.push([value(getGameState(gameState, move, side)), move]);
 			}
 			
@@ -332,7 +333,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			allMoves = combineArr(possibleMoves.slice(3,6));
 			for (let move of allMoves){
 				//should be [moveVal, move], and allow for easy sorting.
-				moveValues.push([value(getGameState(gameState, move, side)), move]);
+				moveValues.push([value(getGameState(gameState, move[1], side)), move]);
 			}
 			side = 'home';
 			//all moves have been tested, now take the max n of them
