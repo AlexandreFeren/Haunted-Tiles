@@ -71,11 +71,14 @@ function getValidMoves(gameState){
 	//loop through home
 	
 	//loop through away
-
+	console.log("inner loop");
+	console.log(gameState[1][0]);
 	for (i = 0; i < 2; i++){
 		for (let member of gameState[1][i]){
 			move = [];
 			if (member[3]){
+				console.log("isDead");
+				console.log(member[3]);
 				//member is dead
 				move.push('none');
 			}else{
