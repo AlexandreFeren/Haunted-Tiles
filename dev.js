@@ -25,14 +25,17 @@ function main(gameState, side) {
 		}
 	}
 	//console.log(b);
+	h = [];
+	a = [];
+	for i in range(3):
+		h.push(gameState.teamStates.home[i].coord);
+		h.push(gameState.teamStates.away[i].coord);
 	
-	teams = [gameState.teamStates.home.coord, gameState.teamStates.away.coord];
+	teams = [h, a];
 	
 	console.log("teams");
 	console.log(gameState.teamStates.home);
 	console.log(gameState.teamStates.home);
-	console.log(gameState.teamStates.home.coord);
-	console.log(gameState.teamStates.away.coord);	
 	console.log(teams);
 	console.log(gameState);
 	console.log(getGameState([b, teams], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
