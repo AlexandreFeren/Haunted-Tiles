@@ -64,7 +64,7 @@ function main(gameState, side) {
 	//a = getGameState([board, teams], test[0].slice(0, 3), side
 	
 	console.log("calling minimax, good luck to me");
-	console.log([board, teams');
+	console.log([board, teams]);
 	//console.log(minimax([board, teams], allMoves, side)[1]);
 	return minimax([board, teams], allMoves, side)[1];
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
