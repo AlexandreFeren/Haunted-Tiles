@@ -101,7 +101,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		
 		for (i = 0; i < allMoves.length; i++){
 			//add the value estimate to the possible move
-			moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
+			//moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
 		}
 		moveValues.sort();	//min doesn't seem to work with the way the arrays are set up
 		return moveValues[0];
@@ -178,6 +178,7 @@ function value(gameState, side){
 	//piece in region = C*value of region
 	//console.log(gameState.teamStates.home.getOwnPropertyNames());
 	val = 0;
+	/*
 	teams = gameState[1];
 	for (i = 0; i < 3; i++){
 		//check death status for each team
@@ -188,7 +189,7 @@ function value(gameState, side){
 			val += 1000;
 		}
 	}
-	
+	*/
 	/*
 	//get distance from center, this should be member.coord manhattan distance to board[3][3]
 	for (i = 0; i < 3; i++){
@@ -205,11 +206,15 @@ function value(gameState, side){
 		//console.log(gameState);
 		
 		//get value of the region for each piece
+		console.log("REGION");
+		console.log(getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]))
+		
 		val += getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]);	
 		val -= getRegionValue(gameState[0], teams[1][i][0], teams[1][i][1]);	
 	}
 
 	//get distance to nearest enemy. Since this is roughly equal for each team, it will be set based on team affiliation
+	/*
 	for (i = 0; i < 3; i++){
 		tempVal = [];
 		for (j = 0; j < 3; j++){
@@ -229,6 +234,7 @@ function value(gameState, side){
 			val -= Math.max(tempVal);
 		}
 	}
+	*/
 
 		
 	return val;
