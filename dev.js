@@ -206,15 +206,15 @@ function value(gameState, side){
 		//console.log(gameState);
 		
 		//get value of the region for each piece
-		console.log("REGION");
-		console.log(getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]))
+		//console.log("REGION");
+		//console.log(getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]))
 		
 		val += getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]);	
 		val -= getRegionValue(gameState[0], teams[1][i][0], teams[1][i][1]);	
 	}
 
 	//get distance to nearest enemy. Since this is roughly equal for each team, it will be set based on team affiliation
-	/*
+	
 	for (i = 0; i < 3; i++){
 		tempVal = [];
 		for (j = 0; j < 3; j++){
@@ -227,14 +227,19 @@ function value(gameState, side){
 				}
 			}
 		}
+		console.log("TEMPVAL");
+		console.log(tempVal);
+		tempVal.sort()
 		if (side == 'home'){
-			val += Math.max(tempVal);
+			//apparently Math.max() only works with tuples
+			
+			val += tempVal[tempVal.length];
 		}
 		else{
-			val -= Math.max(tempVal);
+			val -= tempVal[tempVal.length];
 		}
 	}
-	*/
+	
 
 		
 	return val;
