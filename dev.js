@@ -210,6 +210,7 @@ function value(gameState, side){
 		}
 	}
 	*/
+	
 	for (i = 0; i < 3; i++){
 		//console.log("Game State:");
 		//console.log(gameState);
@@ -221,9 +222,10 @@ function value(gameState, side){
 		val += getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]);	
 		val -= getRegionValue(gameState[0], teams[1][i][0], teams[1][i][1]);	
 	}
+	
 
 	//get distance to nearest enemy. Since this is roughly equal for each team, it will be set based on team affiliation
-	
+	/*
 	for (i = 0; i < 3; i++){
 		tempVal = [];
 		for (j = 0; j < 3; j++){
@@ -250,6 +252,7 @@ function value(gameState, side){
 			val += tempVal[tempVal.length-1];
 		}
 	}
+	*/
 	
 
 		
