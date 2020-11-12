@@ -72,14 +72,14 @@ function main(gameState, side) {
 
 function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	console.log("minimax start");
-	console.log(gameState);
-	console.log(possibleMoves);
-	console.log(side);
+	//console.log(gameState);
+	//console.log(possibleMoves);
+	//console.log(side);
 	moveValues = [];
 	if (side == 'home'){
 		//allMoves will be the array of all move combinations that can be done by this side this turn
 		allMoves = combineArr(possibleMoves.slice(0, 3));
-		console.log(allMoves);
+		//console.log(allMoves);
 		for (i = 0; i < allMoves.length; i++){
 			//add the value estimate to the possible move
 			moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
@@ -231,6 +231,9 @@ function getGameState(gameState, move, side = ""){
 	//board = gameState[0];
 	console.log("in getGameState");
 	console.log(gameState);
+	console.log(move);
+	console.log(gameState[1][0][0][0]);
+	
 	//console.log(move);
 	//console.log(side);
 	for (j = 0; j < Math.floor(move.length/3); j++){
@@ -276,11 +279,13 @@ function getGameState(gameState, move, side = ""){
 			}
 
 		}
+		/*
 		if (side == 'home'){
 			side = 'away';
 		}else{
 			side = 'home';
 		}
+		*/
 	}
 	/*
 	//gameState.teamStates.home = 
