@@ -108,10 +108,10 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			//moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
 		}
 		*/
-		moveValues.sort();	//max doesn't seem to work with the way the arrays are set up
-		console.log("moveValues")
-		console.log(moveValues)
-		return moveValues[len(moveValues)-1][1];
+		moveValues.sort((a, b) => a - b);	//max doesn't seem to work with the way the arrays are set up
+		console.log("moveValues");
+		console.log(moveValues[moveValues.length-1]);
+		return moveValues[moveValues.length-1];
 		
 	}else{
 		//
@@ -126,8 +126,8 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			//add the value estimate to the possible move
 			//moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
 		}
-		moveValues.sort();	//min doesn't seem to work with the way the arrays are set up
-		return moveValues[0][1];
+		moveValues.sort((a, b) => a - b);	//min doesn't seem to work with the way the arrays are set up
+		return moveValues[0];
 	}
 	
 	/*
@@ -251,7 +251,7 @@ function value(gameState, side){
 		}
 		//console.log("TEMPVAL");
 		//console.log(tempVal);
-		tempVal.sort()
+		tempVal.sort((a, b) => a - b)
 		if (side == 'home'){
 			//apparently Math.max() only works with tuples
 			
