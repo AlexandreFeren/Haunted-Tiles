@@ -310,133 +310,30 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	//console.log(gameState);
 	//console.log(possibleMoves);
 	//console.log(side);
-	moveValues = [];
-	if (possibleMoves.length == 6){
-		//if this is the start of a move
-		if (side == 'home'){
-			//get all possibilities for first 3 monster moves (home)
-			allMoves = combineArr(possibleMoves.slice(0,3));
-			for (let move of allMoves){
-				//should be [moveVal, move], and allow for easy sorting. gets value for current side
-				console.log("minimax line 321");
-				console.log(move);
-				console.log(gameState);
-				console.log(side);
-				moveValues.push([value(getGameState(gameState, move, side)), move]);
-			}
-			
-			side = 'away'; //allows just using 'side' and being more consistent
-
-			//all moves have been tested, now take the max n of them
-			//example: [[0, ['none', 'none', 'none']], * * * ]
-			//take the last 1 in <divisor> from moveValues. somewhere in the range of about 10 should be a good divisor probably.
-			//these should be the highest values since the array is now sorted.
-
-			//reassigning moveValues for easy work with return values (small-large)
-			moveValues.sort();
-			if (maxDepth > depth){
-				moveValues = moveValues.slice(moveValues.length - Math.ceil(moveValues.length/10), moveValues.length);
-
-				for (i = 0; i < moveValues.length; i++){
-					//for each possible move, call minimax with the updated game state, remainimg possible moves, opposite side, and depth params.
-					moveValues[i][0] = minimax(getGameState(gameState, moveValues[i][1], side), possibleMoves.slice(3, 6), side, maxDepth, depth + 1)[0]; //first ind, as that is value.
-				}
-				moveValues.sort();
-				//call minimax with the next game state and increment the depth. uses the value found to be max by minimax
-				return moveValues[moveValues[moveValues.length-1]];
-			}else{
-				//return the max value, move won't matter as this is just evaluating the worth of the move
-				//wanted: moveValues[moveValues.length-1][0]
-				return moveValues[moveValues[moveValues.length-1]];
-			}
-			//return minimax(getGameState(gameState, move, side), possibleMoves.slice(3, 6), 'away', maxDepth, depth + 1);
-		}
+	
+	if (side == 'home'){
+		//allMoves will be the array of all move combinations that can be done by this side this turn
+		allMoves = combineArr(possibleMoves.slice(0, 3));
 		
-		else{
-			//get all possibilities for last 3 monster moves (away)
-			allMoves = combineArr(possibleMoves.slice(3,6));
-			for (let move of allMoves){
-				//should be [moveVal, move], and allow for easy sorting.
-				moveValues.push([value(getGameState(gameState, move[1], side)), move]);
-			}
-			side = 'home';
-			//all moves have been tested, now take the max n of them
-			//example: [[0, ['none', 'none', 'none']], * * * ]
-			//take the last 1 in <divisor> from moveValues. somewhere in the range of about 10 should be a good divisor probably.
-			//these should be the highest values since the array is now sorted.
-
-			//reassigning moveValues for easy work with return values
-			moveValues.sort();
-			if (maxDepth > depth){
-				moveValues = moveValues.slice(0, Math.ceil(moveValues.length/10));
-
-				//if not at the deepest level
-				for (i = 0; i < moveValues.length; i++){
-					//for each possible move, call minimax with the updated game state, remainimg possible moves, opposite side, and depth params.
-					//moveValues[i][0] = minimax(getGameState(gameState, moveValues[i][1], side), possibleMoves.slice(0, 3), 'away', maxDepth, depth + 1)[0]; //first ind, as that is value.
-
-					moveValues[i][0] = minimax(getGameState(gameState, moveValuew[i][1], side), possibleMoves.slice(0, 3), side, maxDepth, depth + 1)[0]; //first ind, as that is value.
-				}
-				moveValues.sort();
-				//call minimax with the next game state and increment the depth. uses the value found to be max by minimax
-				return moveValues[moveValues[0]];
-			}else{
-				//return the max value, move won't matter as this is just evaluating the worth of the move
-				//wanted: moveValues[moveValues.length-1][0]
-				return moveValues[moveValues[0]];
-			}
-			//return minimax(getGameState(gameState, move, side), possibleMoves.slice(3, 6), 'home', maxDepth, depth + 1);
+		for (i = 0; i < allMoves.length; i++){
+			//add the value estimate to the possible move
+			moveValues.push(value(allMoves[i], side), allMoves[i]);
 		}
-	} else if (possibleMoves.length == 3) {
-		allMoves = combineArr(possibleMoves);
-		for (let move of allMoves){
-			moveValues.push([value(getGameState(gameState, move, side)), move]);
+		moveValues.sort();	//max doesn't seem to work with the way the arrays are set up
+		return moveValues[len(moveValues)-1];
+		
+	}else{
+		//allMoves will be the array of all move combinations that can be done by this side this turn
+		allMoves = combineArr(possibleMoves.slice(3, 6));
+		
+		for (i = 0; i < allMoves.length; i++){
+			//add the value estimate to the possible move
+			moveValues.push(value(allMoves[i], side), allMoves[i]);
 		}
-		if (side == 'home'){
-			moveValues.sort();
-			if (maxDepth > depth){
-				moveValues = moveValues.slice(moveValues.length - Math.ceil(moveValues.length/10), moveValues.length);
-
-				//if not at the deepest level
-				for (i = 0; i < moveValues.length; i++){
-					//for each possible move, call minimax with the updated game state, remainimg possible moves, opposite side, and depth params.
-					state = getGameState(gameState, moveValues[i][1], side)
-
-					moveValues[i][0] = minimax(state, getPossibleMoves(state), 'away', maxDepth, depth + 1)[0]; //first ind, as that is value.
-				}
-				moveValues.sort();
-				//call minimax with the next game state and increment the depth. uses the value found to be max by minimax
-				return moveValues[moveValues[moveValues.length-1]];
-			}else{
-				//return the max value, move won't matter as this is just evaluating the worth of the move
-				//wanted: moveValues[moveValues.length-1][0]
-				return moveValues[moveValues[moveValues.length-1]];
-			}
-			//return minimax(getGameState(gameState, move, side), possibleMoves.slice(3, 6), 'away', maxDepth, depth + 1);
-		}else{
-
-			moveValues.sort();
-			if (maxDepth > depth){
-				moveValues = moveValues.slice(0, Math.ceil(moveValues.length/10));
-
-				//if not at the deepest level
-				for (i = 0; i < moveValues.length; i++){
-					//for each possible move, call minimax with the updated game state, remainimg possible moves, opposite side, and depth params.
-					state = getGameState(gameState, moveValues[i][1], side)
-					moveValues[i][0] = minimax(state, getPossibleMoves(state), 'home', maxDepth, depth + 1)[0]; //first ind, as that is value.
-				}
-				moveValues.sort();
-				//call minimax with the next game state and increment the depth. uses the value found to be max by minimax
-				return moveValues[moveValues[0]];
-			}else{
-				//return the max value, move won't matter as this is just evaluating the worth of the move
-				//wanted: moveValues[moveValues.length-1][0]
-				return moveValues[moveValues[0]];
-			}
-		}
-	} else {
-		return ['none', 'none', 'none'];
+		moveValues.sort();	//min doesn't seem to work with the way the arrays are set up
+		return moveValues[0];
 	}
+	
 	/*
 	//to be implemented, use the best n moves from the combineArr paired with getGameState
 	moveValues = []
@@ -454,6 +351,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		return [possibleMoves[3][1], possibleMoves[4][1], possibleMoves[5][1]];
 	}
 	*/
+	return ['none', 'none', 'none'];	//fallback code
 }
 function combineArr(arr, ind = 0, result = [[]]){
 	//takes in an array of possible moves (probably limited for 2 for the sake of branching factors), and outputs all possible combinations
