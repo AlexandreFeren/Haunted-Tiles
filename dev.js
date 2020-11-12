@@ -82,7 +82,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		allMoves = combineArr(possibleMoves.slice(0, 3));
 		console.log(allMoves);
 		for (let move of allMoves){
-			moveValues.push(value(getGameState(gameState, move, side)), move);
+			moveValues.push([value(getGameState(gameState, move, side)), move]);
 			/*
 			board = getGameState(game, move, side);
 			console.log("BOARD");
@@ -114,6 +114,11 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		return moveValues[len(moveValues)-1][1];
 		
 	}else{
+		//
+		//
+		//		MUST BE FILLED IN, GOING TO BED FIRST
+		//
+		//
 		//allMoves will be the array of all move combinations that can be done by this side this turn
 		allMoves = combineArr(possibleMoves.slice(3, 6));
 		
