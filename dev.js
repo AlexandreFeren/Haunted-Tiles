@@ -66,7 +66,7 @@ function main(gameState, side) {
 	console.log("calling minimax, good luck to me");
 	console.log([board, teams]);
 	//console.log(minimax([board, teams], allMoves, side)[1]);
-	return minimax([board, teams], allMoves, side)[1];
+	return minimax(JSON.parse(JSON.stringify([board, teams])), allMoves, side)[1];
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
 
@@ -257,10 +257,12 @@ function value(gameState, side){
 	return val;
 }
 
-function getGameState(gameState, move, side = ""){
+function getGameState(gameStateOriginal, move, side = ""){
 	//determines what the state of the board will be after a valid move set
 	//should take in array of length 3
 	//board = gameState[0];
+	gameState = JSON.parse(JSON.stringify(gameStateOriginal));
+
 	console.log("in getGameState");
 	console.log(gameState);
 	console.log(move);
