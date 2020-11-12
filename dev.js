@@ -181,6 +181,12 @@ function value(gameState, side){
 	val = 0;
 	teams = gameState[1];
 	for (i = 0; i < 3; i++){
+		if (gameState[0][teams[0][i][0]][teams[0][i][1]]){
+			teams[0][i][2] = true;
+		}
+		if (gameState[0][teams[1][i][0]][teams[1][i][1]]){
+		    	teams[1][i][2] = true;
+		}
 		//check death status for each team
 		if (teams[0][i][2]){
 			val -= 1000;
