@@ -83,6 +83,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		for (let move of allMoves.slice(0, 5)){
 			board = getGameState(gameState, move, side);
 			console.log("BOARD");
+			console.log(gameState);
 			console.log(board);
 			val = value(board, side);
 			//console.log("VAL");
