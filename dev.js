@@ -64,7 +64,8 @@ function main(gameState, side) {
 	//a = getGameState([board, teams], test[0].slice(0, 3), side
 	
 	console.log("calling minimax, good luck to me");
-	console.log(minimax([board, teams], allMoves, side)[1]);
+	console.log([board, teams');
+	//console.log(minimax([board, teams], allMoves, side)[1]);
 	return minimax([board, teams], allMoves, side)[1];
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
@@ -306,10 +307,10 @@ function getRegionValue(board, i, j){
 	return (x+1)*(y+1);
 }
 function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
-	//console.log("minimax start");
-	//console.log(gameState);
-	//console.log(possibleMoves);
-	//console.log(side);
+	console.log("minimax start");
+	console.log(gameState);
+	console.log(possibleMoves);
+	console.log(side);
 	moveValues = [];
 	if (side == 'home'){
 		//allMoves will be the array of all move combinations that can be done by this side this turn
