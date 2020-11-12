@@ -80,6 +80,15 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		//allMoves will be the array of all move combinations that can be done by this side this turn
 		allMoves = combineArr(possibleMoves.slice(0, 3));
 		console.log(allMoves);
+		for (let move of allMoves){
+			board = getGameState(gameState, move, side);
+			console.log("BOARD");
+			console.log(board);
+			val - value(board, side);
+			console.log("VAL");
+			console.log(val);
+		}
+		/*
 		for (i = 0; i < allMoves.length; i++){
 			console.log("allMoves[i]");
 			console.log(allMoves[i]);
@@ -92,6 +101,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			console.log(val)
 			//moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
 		}
+		*/
 		//moveValues.sort();	//max doesn't seem to work with the way the arrays are set up
 		//return moveValues[len(moveValues)-1];
 		
@@ -178,7 +188,6 @@ function value(gameState, side){
 	//piece in region = C*value of region
 	//console.log(gameState.teamStates.home.getOwnPropertyNames());
 	val = 0;
-	/*
 	teams = gameState[1];
 	for (i = 0; i < 3; i++){
 		//check death status for each team
@@ -189,7 +198,7 @@ function value(gameState, side){
 			val += 1000;
 		}
 	}
-	*/
+	
 	/*
 	//get distance from center, this should be member.coord manhattan distance to board[3][3]
 	for (i = 0; i < 3; i++){
@@ -227,8 +236,8 @@ function value(gameState, side){
 				}
 			}
 		}
-		console.log("TEMPVAL");
-		console.log(tempVal);
+		//console.log("TEMPVAL");
+		//console.log(tempVal);
 		tempVal.sort()
 		if (side == 'home'){
 			//apparently Math.max() only works with tuples
@@ -244,6 +253,7 @@ function value(gameState, side){
 		
 	return val;
 }
+
 function getGameState(gameState, move, side = ""){
 	//determines what the state of the board will be after a valid move set
 	//should take in array of length 3
