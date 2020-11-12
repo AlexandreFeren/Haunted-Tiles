@@ -70,6 +70,55 @@ function main(gameState, side) {
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
 
+function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
+	console.log("minimax start");
+	console.log(gameState);
+	console.log(possibleMoves);
+	console.log(side);
+	moveValues = [];
+	if (side == 'home'){
+		//allMoves will be the array of all move combinations that can be done by this side this turn
+		allMoves = combineArr(possibleMoves.slice(0, 3));
+		console.log(allMoves);
+		for (i = 0; i < allMoves.length; i++){
+			//add the value estimate to the possible move
+			moveValues.push(value(allMoves[i], side), allMoves[i]);
+		}
+		moveValues.sort();	//max doesn't seem to work with the way the arrays are set up
+		return moveValues[len(moveValues)-1];
+		
+	}else{
+		//allMoves will be the array of all move combinations that can be done by this side this turn
+		allMoves = combineArr(possibleMoves.slice(3, 6));
+		
+		for (i = 0; i < allMoves.length; i++){
+			//add the value estimate to the possible move
+			moveValues.push(value(allMoves[i], side), allMoves[i]);
+		}
+		moveValues.sort();	//min doesn't seem to work with the way the arrays are set up
+		return moveValues[0];
+	}
+	
+	/*
+	//to be implemented, use the best n moves from the combineArr paired with getGameState
+	moveValues = []
+	if (possibleMoves.length == 6){
+		//if this is the start of a move
+		if (side == 'home'){
+			
+		}
+	}
+	if (side === 'home'){
+		return [possibleMoves[0][1], possibleMoves[1][1], possibleMoves[2][1]];
+	}
+	else{
+		
+		return [possibleMoves[3][1], possibleMoves[4][1], possibleMoves[5][1]];
+	}
+	*/
+	return ['none', 'none', 'none'];	//fallback code
+}
+
 function getValidMoves(gameState){
 	const [rowSize, colSize] = [gameState[0].length, gameState[0][0].length];
 	moves = []
@@ -306,54 +355,7 @@ function getRegionValue(board, i, j){
 	}
 	return (x+1)*(y+1);
 }
-function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
-	console.log("minimax start");
-	console.log(gameState);
-	console.log(possibleMoves);
-	console.log(side);
-	moveValues = [];
-	if (side == 'home'){
-		//allMoves will be the array of all move combinations that can be done by this side this turn
-		allMoves = combineArr(possibleMoves.slice(0, 3));
-		
-		for (i = 0; i < allMoves.length; i++){
-			//add the value estimate to the possible move
-			moveValues.push(value(allMoves[i], side), allMoves[i]);
-		}
-		moveValues.sort();	//max doesn't seem to work with the way the arrays are set up
-		return moveValues[len(moveValues)-1];
-		
-	}else{
-		//allMoves will be the array of all move combinations that can be done by this side this turn
-		allMoves = combineArr(possibleMoves.slice(3, 6));
-		
-		for (i = 0; i < allMoves.length; i++){
-			//add the value estimate to the possible move
-			moveValues.push(value(allMoves[i], side), allMoves[i]);
-		}
-		moveValues.sort();	//min doesn't seem to work with the way the arrays are set up
-		return moveValues[0];
-	}
-	
-	/*
-	//to be implemented, use the best n moves from the combineArr paired with getGameState
-	moveValues = []
-	if (possibleMoves.length == 6){
-		//if this is the start of a move
-		if (side == 'home'){
-			
-		}
-	}
-	if (side === 'home'){
-		return [possibleMoves[0][1], possibleMoves[1][1], possibleMoves[2][1]];
-	}
-	else{
-		
-		return [possibleMoves[3][1], possibleMoves[4][1], possibleMoves[5][1]];
-	}
-	*/
-	return ['none', 'none', 'none'];	//fallback code
-}
+
 function combineArr(arr, ind = 0, result = [[]]){
 	//takes in an array of possible moves (probably limited for 2 for the sake of branching factors), and outputs all possible combinations
 	//because of the synchronous move setup, this is most easily done here
