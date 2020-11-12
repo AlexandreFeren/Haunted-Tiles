@@ -28,7 +28,12 @@ function main(gameState, side) {
 		a.push(gameState.teamStates.away[i].coord);
 		a[i].push(gameState.teamStates.away[i].isDead);
 	}
-	teams = [h, a];
+	if (side == 'home'){
+		teams = [h, a];
+	}
+	else{
+		teams = [a, h];
+	}
 	
 	allMoves = getValidMoves([board, teams]);
 	//test = combineArr(allMoves);
@@ -72,12 +77,24 @@ function main(gameState, side) {
 
 function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	console.log("minimax start");
-	//console.log(gameState);
-	//console.log(possibleMoves);
-	//console.log(side);
 	moveValues = [];
-	//game = JSON.parse(JSON.stringify(gameState));
-	//side = 'home';
+	//refactoring so that minimax is equivalent for both home and away as something isn't working with the away team.
+	
+	
+	allMoves = combineArr(possibleMoves.slice(0, 3));
+	console.log(allMoves);
+	for (let move of allMoves){
+		moveValues.push([value(getGameState(gameState, move, side)), move]);
+	}
+	moveValues.sort(function(a, b) {
+		return a[0] - b[0];
+	});
+	//moveValues.sort((a, b) => a - b);	//max doesn't seem to work with the way the arrays are set up
+	console.log(moveValues);
+	console.log(side);
+	return moveValues[moveValues.length-1];
+
+	/*
 	if (side == 'home'){
 		//allMoves will be the array of all move combinations that can be done by this side this turn
 		allMoves = combineArr(possibleMoves.slice(0, 3));
@@ -108,6 +125,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		console.log(side);
 		return moveValues[0];
 	}
+	*/
 	
 	/*
 	//to be implemented, use the best n moves from the combineArr paired with getGameState
