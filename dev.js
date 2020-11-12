@@ -206,7 +206,7 @@ function value(gameState, side){
 		
 		//get value of the region for each piece
 		val += getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]);	
-		val -= getRegionValue(gameState[0], teams[0][i][0], teams[1][i][1]);	
+		val -= getRegionValue(gameState[0], teams[1][i][0], teams[1][i][1]);	
 	}
 
 	//get distance to nearest enemy. Since this is roughly equal for each team, it will be set based on team affiliation
@@ -214,8 +214,8 @@ function value(gameState, side){
 		tempVal = [];
 		for (j = 0; j < 3; j++){
 			//get min of distance to each of 3 pieces
-			if (!teams[0][i][3]){
-				if (!teams[1][j][3]){
+			if (!teams[0][i][2]){
+				if (!teams[1][j][2]){
 					//manhattan distance between closest pieces
 					//this needs fixing, as it currently sums all distances
 					tempVal.push(Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
