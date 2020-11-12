@@ -70,12 +70,13 @@ function main(gameState, side) {
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
 
-function minimax(game, possibleMoves, side, maxDepth = 2, depth = 0){
+function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	console.log("minimax start");
 	//console.log(gameState);
 	//console.log(possibleMoves);
 	//console.log(side);
 	moveValues = [];
+	game = JSON.parse(JSON.stringify(gameState));
 	if (side == 'home'){
 		//allMoves will be the array of all move combinations that can be done by this side this turn
 		allMoves = combineArr(possibleMoves.slice(0, 3));
