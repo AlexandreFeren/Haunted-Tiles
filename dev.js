@@ -86,6 +86,8 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		}
 
 		moveValues.sort((a, b) => a - b);	//max doesn't seem to work with the way the arrays are set up
+		console.log(moveValues);
+		console.log(side);
 		return moveValues[moveValues.length-1];
 		
 	}else{
@@ -95,9 +97,10 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		for (let move of allMoves){
 			moveValues.push([value(getGameState(gameState, move, side)), move]);
 		}
+
+		moveValues.sort((a, b) => a - b);	//min doesn't seem to work with the way the arrays are set up
 		console.log(moveValues);
 		console.log(side);
-		moveValues.sort((a, b) => a - b);	//min doesn't seem to work with the way the arrays are set up
 		return moveValues[0];
 	}
 	
