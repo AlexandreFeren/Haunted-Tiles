@@ -201,6 +201,7 @@ function value(gameState, side){
 	val = 0;
 	teams = gameState[1];
 	console.log("VALUE");
+	console.log(val);
 	for (i = 0; i < 3; i++){
 		
 		//should mark team member as dead. As this is passed by reference, it should propagate
@@ -232,7 +233,7 @@ function value(gameState, side){
 		}
 	}
 	*/
-	
+	console.log(val);
 	for (i = 0; i < 3; i++){
 		//console.log("Game State:");
 		//console.log(gameState);
@@ -277,7 +278,7 @@ function value(gameState, side){
 	*/
 	
 
-		
+	console.log(val);
 	return val;
 }
 
