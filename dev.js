@@ -244,21 +244,23 @@ function value(gameState, side){
 			if (!teams[0][i][2]){
 				if (!teams[1][j][2]){
 					//manhattan distance between closest pieces
-					//this needs fixing, as it currently sums all distances
-					tempVal.push(Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
+					//squared to prioritize closing distance in the 'long' direction
+					tempVal.push(Math.pow((teams[0][i][0]-teams[1][j][0]), 2) + Math.pow((teams[0][i][1]-teams[1][j][1]), 2));
 				}
 			}
 		}
 		//console.log("TEMPVAL");
 		//console.log(tempVal);
 		tempVal.sort((a, b) => a - b)
+		
+		//want a 'better' value for close values. 
 		if (side == 'home'){
 			//apparently Math.max() only works with tuples
 			
-			val += tempVal[tempVal.length-1];
+			val -= tempVal[tempVal.length-1];
 		}
 		else{
-			val -= tempVal[tempVal.length-1];
+			val += tempVal[tempVal.length-1];
 		}
 	}
 	
