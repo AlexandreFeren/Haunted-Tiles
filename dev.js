@@ -83,48 +83,17 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		console.log(allMoves);
 		for (let move of allMoves){
 			moveValues.push([value(getGameState(gameState, move, side)), move]);
-			/*
-			board = getGameState(game, move, side);
-			console.log("BOARD");
-			//console.log(gameState);
-			console.log(game);
-			console.log(board);
-			val = value(board, side);
-			//console.log("VAL");
-			//console.log(val);
-			*/
 		}
-		/*
-		for (i = 0; i < allMoves.length; i++){
-			console.log("allMoves[i]");
-			console.log(allMoves[i]);
-			//add the value estimate to the possible move
-			board = getGameState(gameState, allMoves[i], side);
-			console.log("BOARD");
-			console.log(board);
-			val = value(board, side);
-			console.log("VAL");
-			console.log(val)
-			//moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
-		}
-		*/
+
 		moveValues.sort((a, b) => a - b);	//max doesn't seem to work with the way the arrays are set up
-		console.log("moveValues");
-		console.log(moveValues[moveValues.length-1]);
 		return moveValues[moveValues.length-1];
 		
 	}else{
-		//
-		//
-		//		MUST BE FILLED IN, GOING TO BED FIRST
-		//
-		//
-		//allMoves will be the array of all move combinations that can be done by this side this turn
+
 		allMoves = combineArr(possibleMoves.slice(3, 6));
-		
-		for (i = 0; i < allMoves.length; i++){
-			//add the value estimate to the possible move
-			//moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
+		console.log(allMoves);
+		for (let move of allMoves){
+			moveValues.push([value(getGameState(gameState, move, side)), move]);
 		}
 		moveValues.sort((a, b) => a - b);	//min doesn't seem to work with the way the arrays are set up
 		return moveValues[0];
@@ -245,7 +214,7 @@ function value(gameState, side){
 				if (!teams[1][j][2]){
 					//manhattan distance between closest pieces
 					//squared to prioritize closing distance in the 'long' direction may be an idea for future
-					tempVal.push((teams[0][i][0]-teams[1][j][0]) + (teams[0][i][1]-teams[1][j][1]));
+					tempVal.push(Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
 				}
 			}
 		}
