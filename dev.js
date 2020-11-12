@@ -80,13 +80,13 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		//allMoves will be the array of all move combinations that can be done by this side this turn
 		allMoves = combineArr(possibleMoves.slice(0, 3));
 		console.log(allMoves);
-		for (let move of allMoves){
+		for (let move of allMoves.slice(0, 5)){
 			board = getGameState(gameState, move, side);
 			console.log("BOARD");
 			console.log(board);
 			val = value(board, side);
-			console.log("VAL");
-			console.log(val);
+			//console.log("VAL");
+			//console.log(val);
 		}
 		/*
 		for (i = 0; i < allMoves.length; i++){
