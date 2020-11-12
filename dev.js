@@ -233,10 +233,10 @@ function value(gameState, side){
 		if (side == 'home'){
 			//apparently Math.max() only works with tuples
 			
-			val += tempVal[tempVal.length];
+			val += tempVal[tempVal.length-1];
 		}
 		else{
-			val -= tempVal[tempVal.length];
+			val -= tempVal[tempVal.length-1];
 		}
 	}
 	
