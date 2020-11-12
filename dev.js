@@ -70,7 +70,7 @@ function main(gameState, side) {
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
 
-function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
+function minimax(game, possibleMoves, side, maxDepth = 2, depth = 0){
 	console.log("minimax start");
 	//console.log(gameState);
 	//console.log(possibleMoves);
@@ -81,9 +81,10 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		allMoves = combineArr(possibleMoves.slice(0, 3));
 		console.log(allMoves);
 		for (let move of allMoves.slice(0, 5)){
-			board = getGameState(gameState, move, side);
+			board = getGameState(game, move, side);
 			console.log("BOARD");
 			console.log(gameState);
+			console.log(game);
 			console.log(board);
 			val = value(board, side);
 			//console.log("VAL");
