@@ -126,6 +126,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		return [possibleMoves[3][1], possibleMoves[4][1], possibleMoves[5][1]];
 	}
 	*/
+	console.log("FALLBACK IN MINIMAX");
 	return ['none', 'none', 'none'];	//fallback code
 }
 
