@@ -84,10 +84,10 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			console.log("allMoves[i]");
 			console.log(allMoves[i]);
 			//add the value estimate to the possible move
-			moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
+			//moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
 		}
-		moveValues.sort();	//max doesn't seem to work with the way the arrays are set up
-		return moveValues[len(moveValues)-1];
+		//moveValues.sort();	//max doesn't seem to work with the way the arrays are set up
+		//return moveValues[len(moveValues)-1];
 		
 	}else{
 		//allMoves will be the array of all move combinations that can be done by this side this turn
