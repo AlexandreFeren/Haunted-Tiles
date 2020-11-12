@@ -79,8 +79,10 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	if (side == 'home'){
 		//allMoves will be the array of all move combinations that can be done by this side this turn
 		allMoves = combineArr(possibleMoves.slice(0, 3));
-		//console.log(allMoves);
+		console.log(allMoves);
 		for (i = 0; i < allMoves.length; i++){
+			console.log("allMoves[i]");
+			console.log(allMoves[i]);
 			//add the value estimate to the possible move
 			moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
 		}
