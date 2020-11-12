@@ -76,12 +76,14 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	//console.log(possibleMoves);
 	//console.log(side);
 	moveValues = [];
-	game = JSON.parse(JSON.stringify(gameState));
+	//game = JSON.parse(JSON.stringify(gameState));
 	if (side == 'home'){
 		//allMoves will be the array of all move combinations that can be done by this side this turn
 		allMoves = combineArr(possibleMoves.slice(0, 3));
 		console.log(allMoves);
 		for (let move of allMoves.slice(0, 5)){
+			moveValues.push(value(getGameState(gameState, move, side)), move);
+			/*
 			board = getGameState(game, move, side);
 			console.log("BOARD");
 			//console.log(gameState);
@@ -90,6 +92,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			val = value(board, side);
 			//console.log("VAL");
 			//console.log(val);
+			*/
 		}
 		/*
 		for (i = 0; i < allMoves.length; i++){
@@ -106,7 +109,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		}
 		*/
 		moveValues.sort();	//max doesn't seem to work with the way the arrays are set up
-		return moveValues[len(moveValues)-1];
+		return moveValues[len(moveValues)-1][1];
 		
 	}else{
 		//allMoves will be the array of all move combinations that can be done by this side this turn
@@ -117,7 +120,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			//moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
 		}
 		moveValues.sort();	//min doesn't seem to work with the way the arrays are set up
-		return moveValues[0];
+		return moveValues[0][1];
 	}
 	
 	/*
