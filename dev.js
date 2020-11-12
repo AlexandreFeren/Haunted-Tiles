@@ -77,7 +77,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	//console.log(side);
 	moveValues = [];
 	//game = JSON.parse(JSON.stringify(gameState));
-	side = 'home';
+	//side = 'home';
 	if (side == 'home'){
 		//allMoves will be the array of all move combinations that can be done by this side this turn
 		allMoves = combineArr(possibleMoves.slice(0, 3));
