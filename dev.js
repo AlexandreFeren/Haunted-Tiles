@@ -84,6 +84,12 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 			console.log("allMoves[i]");
 			console.log(allMoves[i]);
 			//add the value estimate to the possible move
+			board = getGameState(gameState, allMoves[i], side);
+			console.log("BOARD");
+			console.log(board);
+			val = value(board);
+			console.log("VAL");
+			console.log(val)
 			//moveValues.push(value(getGameState(gameState, allMoves[i], side)), allMoves[i]);
 		}
 		//moveValues.sort();	//max doesn't seem to work with the way the arrays are set up
