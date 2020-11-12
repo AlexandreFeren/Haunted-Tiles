@@ -71,7 +71,8 @@ function main(gameState, side) {
 	console.log("calling minimax, good luck to me");
 	//console.log([board, teams]);
 	//console.log(minimax([board, teams], allMoves, side)[1]);
-	return minimax(JSON.parse(JSON.stringify([board, teams])), allMoves, side)[1];
+	return minimax(JSON.parse(JSON.stringify([board, teams])), allMoves, 'home')[1];
+	//return minimax(JSON.parse(JSON.stringify([board, teams])), allMoves, side)[1];
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
 
