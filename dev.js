@@ -236,8 +236,8 @@ function getGameState(gameStateOriginal, move, side = ""){
 function getRegionValue(board, i, j){
 	//determines the size of an area that a monster is in using the location it is at.
 	//very much an approximation for efficiency's sake
-	x = 0;
-	y = 0;
+	x = 1;
+	y = 1;
 	//console.log("board");
 	//console.log(board);
 	if (i < 0 || i >= board.length){
