@@ -177,7 +177,7 @@ function value(gameState, side){
 		if (side == 'home'){
 			//apparently Math.max() only works with tuples
 			
-			val -= tempVal[0];
+			val += tempVal[0];
 		}
 	}
 	
