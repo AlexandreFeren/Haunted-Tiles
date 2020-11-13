@@ -164,7 +164,7 @@ function value(gameState, side){
 			if (!teams[0][i][2]){
 				if (!teams[1][j][2]){
 					//manhattan distance between closest pieces
-					tempVal.push((Math.abs(teams[0][i][0]-teams[1][j][0])-2) + (Math.abs(teams[0][i][1]-teams[1][j][1])-2));
+					tempVal.push(Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
 				}
 			}
 		}
