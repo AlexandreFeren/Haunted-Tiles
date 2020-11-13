@@ -39,7 +39,18 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	allMoves = combineArr(possibleMoves.slice(0, 3));
 	
 	for (let move of allMoves){
-		moveValues.push([value(getGameState(gameState, move, side)), move]);
+		board = getGameState(gameState, move, side);
+		for (i = 0; i < 3; i++){
+			/* because of the way getGamestate is programmed, the tile that would be getting moved to
+			 * is reduced by 1 (as it should be), but this leads to a quirk in the getRegionValue function
+			 * that since stepping on one of those tiles again would lead to death, it treats it as a hard
+			 * border. the logic then returns 0 for the value of the region, and claims that you have no more
+			 * value left on the board, effectively. this should fix the issue that is caused when there is
+			 * only one 'fresh' tile available, but it actually has less space that can be used by the AI.
+			*/
+			board[0][board[1][0][i][0]][board[1][0][i][1]] += 1;
+		}
+		moveValues.push([value(board), move]);
 	}
 	
 	moveValues.sort(function(a, b) {
