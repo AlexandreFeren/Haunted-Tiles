@@ -121,13 +121,8 @@ function value(gameState, side){
 	for (i = 0; i < 3; i++){
 		
 		//should mark team member as dead. As this is passed by reference, it should propagate
-		//also worth noting, I think that the change to board made the death logic not work
-		//as a result of this I have incremented the threshold, and everything should be okay now
-		if (gameState[0][teams[0][i][0]][teams[0][i][1]] <= 2){
+		if (gameState[0][teams[0][i][0]][teams[0][i][1]] <= 1){
 			teams[0][i][2] = true;
-		}
-		if (gameState[0][teams[1][i][0]][teams[1][i][1]] <= 2){
-		    	teams[1][i][2] = true;
 		}
 		//check death status for each team
 		if (teams[0][i][2]){
@@ -166,6 +161,15 @@ function value(gameState, side){
 			//manhattan distance between closest pieces
 			console.log(Math.abs(Math.abs(teams[0][i][0]-teams[1][j][0])-2) + Math.abs(Math.abs(teams[0][i][1]-teams[1][j][1])-2));
 			val -= (Math.abs(Math.abs(teams[0][i][0]-teams[1][j][0])-2) + Math.abs(Math.abs(teams[0][i][1]-teams[1][j][1])-2));
+		}
+
+	}
+	for (i = 0; i < 3; i++){
+		for (j = i; j < 3; j++){
+			//if 2 ally tiles will be on the same tile, pretend they both die, should be quite bad most of the time.
+			if (teams[0][i][0] === teams[0][j][0] && teams[0][i][1] === teams[0][j][1]){
+				val -= 2000;
+			}
 		}
 
 	}
