@@ -5,7 +5,6 @@ function main(gameState, side) {
 	const myTeam = gameState.teamStates[side];
 	const [rowSize, colSize] = gameState.boardSize;
 	const possibleMoves = [];
-	//allMoves = [];	//possible moves for all 6 monsters
 	
 	b = [[],[],[],[],[],[],[]];
 	for (i = 0; i < gameState.tileStates.length; i++){
@@ -14,17 +13,11 @@ function main(gameState, side) {
 		}
 	}
 	
-	
-	//console.log(b);
-	//console.log("teams");
 
 	h = [];
 	a = [];
 	
 	for (i = 0; i < 3; i++){
-		//console.log("loop");
-		//console.log(gameState.teamStates.home[i]);
-		//console.log(gameState.teamStates.home[i].coord);
 	
 		h.push(gameState.teamStates.home[i].coord);
 		h[i].push(gameState.teamStates.home[i].isDead);
@@ -33,56 +26,56 @@ function main(gameState, side) {
 	}
 	teams = [h, a];
 	
-	allMoves = getValidMoves([b, teams])
-	/*
-	for (let member of gameState.teamStates.home){
-		//get moves for home team
-		//console.log(member);
-		//console.log(home.getOwnPropertyNames());
-		allMoves.push(getValidMoves([gameState], member.coord));
+	allMoves = getValidMoves([board, teams]);
+	
+	return minimax(JSON.parse(JSON.stringify([board, teams])), allMoves, 'home')[1];
+}
+
+function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
+	moveValues = [];	
+	
+	allMoves = combineArr(possibleMoves.slice(0, 3));
+	
+	for (let move of allMoves){
+		moveValues.push([value(getGameState(gameState, move, side)), move]);
 	}
-	for (let member of gameState.teamStates.away){
-		//get moves for away team
-		allMoves.push(getValidMoves(gameState, member))
+	
+	moveValues.sort(function(a, b) {
+		return a[0] - b[0];
+	});
+	
+	return moveValues[moveValues.length-1];
+	
+	/*
+	//to be implemented, use the best n moves from the combineArr paired with getGameState
+	moveValues = []
+	if (possibleMoves.length == 6){
+		//if this is the start of a move
+		if (side == 'home'){
+			
+		}
+	}
+	if (side === 'home'){
+		return [possibleMoves[0][1], possibleMoves[1][1], possibleMoves[2][1]];
+	}
+	else{
+		
+		return [possibleMoves[3][1], possibleMoves[4][1], possibleMoves[5][1]];
 	}
 	*/
-	//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
-	//the actual return value will depend on which side you are playing for
-	
-	console.log("in main");
-
-	
-	
-	//console.log(gameState.teamStates.home);
-	//console.log(gameState.teamStates.home);
-	//console.log(teams);
-	//console.log(gameState);
-	//console.log(getGameState([b, teams], [allMoves[0][1], allMoves[1][1], allMoves[2][1]], side));
-	return minimax(gameState, allMoves, side);
-	// we are returning a timeout here to test limiting execution time on the sandbox side.
+	return ['none', 'none', 'none'];	//fallback code
 }
 
 function getValidMoves(gameState){
 	const [rowSize, colSize] = [gameState[0].length, gameState[0][0].length];
 	moves = []
 	board = gameState[0];
-	for (i = 0; i < gameState[1].length; i++){
-		for (let member of gameState[1][i]){
-			
-		}
-	}
-	//loop through home
-	
-	//loop through away
-	console.log("inner loop");
-	console.log(gameState[1][0]);
+
 	for (i = 0; i < 2; i++){
 		for (let member of gameState[1][i]){
 			move = [];
-			if (member[3]){
-				console.log("isDead");
-				console.log(member[3]);
-				//member is dead
+			if (member[2]){
+
 				move.push('none');
 			}else{
 				move.push('none');
@@ -101,8 +94,6 @@ function getValidMoves(gameState){
 				}
 			}
 			moves.push(move);
-			console.log("moves");
-			console.log(moves);
 		}
 
 	}
@@ -110,14 +101,10 @@ function getValidMoves(gameState){
 }
 
 function value(gameState, side){
-	//piece alive = good
-	//piece near middle = good
-	//piece near opponent = good
-	//piece near ally = bad
-	//piece in region = C*value of region
-	//console.log(gameState.teamStates.home.getOwnPropertyNames());
+
 	val = 0;
-	teams = gameState.teamStates;
+
+	teams = gameState[1];
 	for (i = 0; i < 3; i++){
 		if (teams.home[i].isDead){
 			val -= 1000;
@@ -139,10 +126,9 @@ function value(gameState, side){
 	}
 	*/
 	for (i = 0; i < 3; i++){
-		//console.log("Game State:");
-		//console.log(gameState);
-		val += getRegionValue(gameState.tileStates, teams.home[i].coord[0], teams.home[i].coord[1]);	
-		val -= getRegionValue(gameState.tileStates, teams.away[i].coord[0], teams.away[i].coord[1]);	
+		val += getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]);	
+		val -= getRegionValue(gameState[0], teams[1][i][0], teams[1][i][1]);	
+
 	}
 
 	//get distance to nearest enemy. Since this is roughly equal for each team, it will be set based on team affiliation
@@ -166,70 +152,57 @@ function value(gameState, side){
 		
 	return val;
 }
-function getGameState(gameState, move, side, toMoveStart = 0){
-	//determines what the state of the board will be after a valid move set
-	//should take in array of length 3
-	board = gameState.tileStates;
-	//console.log("in getGameState");
-	//console.log(gameState);
-	//console.log(move);
-	//console.log("from teams, home, 1st member hopefully. Expecting [0, 0] probably");
-	//console.log(gameState[1][0][0]);
-	//console.log(teams);
-	for (i = toMoveStart; i < toMoveStart + move.length; i++){
-		//console.log("in loop");
-		//console.log(gameState);
-		//console.log(gameState[1][0][i]);
-		if (side == 'home' || side == ""){
-			//console.log(gameState[1][0][1]);
-			//console.log(gameState[0][gameState[1][0][i].coord[0]][gameState[1][0][i].coord[1]]);
-			if (move[i] == 'north') {
-				gameState[0][gameState[1][0][i][0]-1][gameState[1][0][i][1]] -= 1;
-				gameState[1][0][i][0]--;
-			}else if (move[i] == 'south') {
-				gameState[0][gameState[1][0][i][0]+1][gameState[1][0][i][1]] -= 1;
-				gameState[1][0][i][0]++;
-			}else if (move[i] == 'west') {
-				gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]-1] -= 1;
-				gameState[1][0][i][1]--;
-			}else if (move[i] == 'east') {
-				gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]+1] -= 1;
-				gameState[1][0][i][1]++;
-			}else{
-				gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]] -= 1;
+
+function getGameState(gameStateOriginal, move, side = ""){
+
+	gameState = JSON.parse(JSON.stringify(gameStateOriginal));
+	
+	for (j = 0; j < Math.floor(move.length/3); j++){
+		for (i = 0; i < 3; i++){
+
+			if (side == 'home' || side == "") {
+				//console.log("side = home");
+
+				if (move[i] == 'north') {
+					gameState[0][gameState[1][0][i][0]-1][gameState[1][0][i][1]] -= 1;
+					gameState[1][0][i][0]--;
+				}else if (move[i] == 'south') {
+					gameState[0][gameState[1][0][i][0]+1][gameState[1][0][i][1]] -= 1;
+					gameState[1][0][i][0]++;
+				}else if (move[i] == 'west') {
+					gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]-1] -= 1;
+					gameState[1][0][i][1]--;
+				}else if (move[i] == 'east') {
+					gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]+1] -= 1;
+					gameState[1][0][i][1]++;
+				}else{
+					gameState[0][gameState[1][0][i][0]][gameState[1][0][i][1]] -= 1;
+				}
 			}
-		}
-		if (side == 'away' || side == ""){
-			if (move[i] == 'north') {
-				gameState[0][gameState[1][1][i][0]-1][gameState[1][1][i][1]] -= 1;
-				gameState[1][1][i][0]--;
-			}else if (move[i] == 'south') {
-				gameState[0][gameState[1][1][i][0]+1][gameState[1][1][i][1]] -= 1;
-				gameState[1][1][i][0]++;
-			}else if (move[i] == 'west') {
-				gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]-1] -= 1;
-				gameState[1][1][i][1]--;
-			}else if (move[i] == 'east') {
-				gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]+1] -= 1;
-				gameState[1][1][i][1]++;
-			}else{
-				gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]] -= 1;
+			if (side == 'away' || side == ""){
+				if (move[i] == 'north') {
+					gameState[0][gameState[1][1][i][0]-1][gameState[1][1][i][1]] -= 1;
+					gameState[1][1][i][0]--;
+				}else if (move[i] == 'south') {
+					gameState[0][gameState[1][1][i][0]+1][gameState[1][1][i][1]] -= 1;
+					gameState[1][1][i][0]++;
+				}else if (move[i] == 'west') {
+					gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]-1] -= 1;
+					gameState[1][1][i][1]--;
+				}else if (move[i] == 'east') {
+					gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]+1] -= 1;
+					gameState[1][1][i][1]++;
+				}else{
+					gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]] -= 1;
+				}
 			}
+			
+
 		}
+
+
 	}
-	/*
-	//gameState.teamStates.home = 
-	console.log("S");
-	console.log(gameState[0]);
-	console.log(gameState[1]);
-	console.log("[1][0]");
-	console.log(gameState[1][0]);
-	console.log("");
-	console.log(gameState[1][0][0]);
-	console.log(gameState[1][0][0].coord[0]);
-	console.log(gameState[0][gameState[1][0][0].coord[0]][gameState[1][0][0].coord[1]]);
-	console.log("E");
-	*/
+
 	return gameState;
 	
 }
