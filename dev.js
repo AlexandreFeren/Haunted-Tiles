@@ -141,8 +141,8 @@ function value(gameState, side){
 	//console.log(val);
 	for (i = 0; i < 3; i++){
 
-		val += getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]);	
-		val -= getRegionValue(gameState[0], teams[1][i][0], teams[1][i][1]);	
+		val += getRegionValue(JSON.Parse(JSON.Stringify(gameState[0])), teams[0][i][0], teams[0][i][1]);	
+		val -= getRegionValue(JSON.Parse(JSON.Stringify(gameState[0])), teams[1][i][0], teams[1][i][1]);	
 	}
 	
 
@@ -236,6 +236,8 @@ function getGameState(gameStateOriginal, move, side = ""){
 function getRegionValue(board, i, j){
 	//determines the size of an area that a monster is in using the location it is at.
 	//very much an approximation for efficiency's sake
+	
+	/*
 	x = 1;
 	y = 1;
 	//console.log("board");
@@ -285,7 +287,26 @@ function getRegionValue(board, i, j){
 		j+= 1;
 		y += 1;
 	}
-	return (x+1)*(y+1);
+	*/
+	val = 0;
+
+	if (i < 0 || j < 0 || i >= board.length || j >= board.length){
+		return 0;
+	}
+	if (board[i][j] <= 1){
+		return 0;
+	} else{
+		val += board[i][j] - 1;
+		board[i][j] = -1;
+	}
+	board[i][j] = -1;
+	
+	val += getRegionValues(board, i+1, j);
+	val += getRegionValues(board, i-1, j);
+	val += getRegionValues(board, i, j+1);
+	val += getRegionValues(board, i, j-1);
+	return val;
+	
 }
 
 function combineArr(arr, ind = 0, result = [[]]){
