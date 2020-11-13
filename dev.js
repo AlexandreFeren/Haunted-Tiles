@@ -166,9 +166,7 @@ function value(gameState, side){
 			val -= (Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
 		}
 
-		tempVal.sort((a, b) => a - b);
-		//want a 'better' value for close values. 
-		}
+	}
 	
 	
 
