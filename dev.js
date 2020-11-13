@@ -78,7 +78,7 @@ function main(gameState, side) {
 }
 
 function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
-	console.log("minimax start");
+	//console.log("minimax start");
 	moveValues = [];
 	//refactoring so that minimax is equivalent for both home and away as something isn't working with the away team.
 	
@@ -105,8 +105,8 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		return a[0] - b[0];
 	});
 	//moveValues.sort((a, b) => a - b);	//max doesn't seem to work with the way the arrays are set up
-	console.log(moveValues);
-	console.log(side);
+	//console.log(moveValues);
+	//console.log(side);
 	return moveValues[moveValues.length-1];
 
 	/*
