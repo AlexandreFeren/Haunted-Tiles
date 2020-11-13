@@ -141,8 +141,8 @@ function value(gameState, side){
 	//console.log(val);
 	for (i = 0; i < 3; i++){
 
-		val += getRegionValue(JSON.Parse(JSON.Stringify(gameState[0])), teams[0][i][0], teams[0][i][1]);	
-		val -= getRegionValue(JSON.Parse(JSON.Stringify(gameState[0])), teams[1][i][0], teams[1][i][1]);	
+		val += getRegionValue(JSON.parse(JSON.stringify(gameState[0])), teams[0][i][0], teams[0][i][1]);	
+		val -= getRegionValue(JSON.parse(JSON.stringify(gameState[0])), teams[1][i][0], teams[1][i][1]);	
 	}
 	
 
