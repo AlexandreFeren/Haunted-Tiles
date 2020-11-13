@@ -156,29 +156,23 @@ function value(gameState, side){
 	
 
 	//get distance to nearest enemy. Since this is roughly equal for each team, it will be set based on team affiliation
-	
+	console.log("in value, getting neighbor bonus");
+
 	for (i = 0; i < 3; i++){
 		tempVal = [];
 		for (j = 0; j < 3; j++){
 			//get min of distance to each of 3 pieces
-			if (!teams[0][i][2]){
-				if (!teams[1][j][2]){
-					//manhattan distance between closest pieces
-					tempVal.push(Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
-				}
-			}
+			//manhattan distance between closest pieces
+			console.log(Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
+			tempVal.push(Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
 		}
-		//console.log("TEMPVAL");
-		//console.log(tempVal);
+
 		tempVal.sort((a, b) => a - b);
 		console.log("tempVAL");
 		console.log(tempVal);
 		//want a 'better' value for close values. 
-		if (side == 'home'){
-			//apparently Math.max() only works with tuples
 			
-			val += tempVal[0];
-		}
+		val += tempVal[0];
 	}
 	
 	
