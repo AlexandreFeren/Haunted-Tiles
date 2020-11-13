@@ -87,7 +87,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	console.log(allMoves);
 	
 	for (let move of allMoves){
-		moveValues.push([value(getGameState(gameState, move, side)), move]);
+		//moveValues.push([value(getGameState(gameState, move, side)), move]);
 		moveValues.push([minimax(getGameState(gameState, move, side), getValidMoves(gameState), side, maxDepth, depth + 1)[0], move]);
 	}
 	/*
@@ -173,6 +173,7 @@ function getValidMoves(gameState){
 	//loop through away
 	//console.log("inner loop");
 	//console.log(gameState[1][0]);
+	/*
 	for (i = 0; i < 2; i++){
 		for (let member of gameState[1][i]){
 			move = [];
@@ -202,6 +203,8 @@ function getValidMoves(gameState){
 			//console.log(moves);
 		}
 	}
+	*/
+	moves = [['none', 'none', 'none']];
 
 	return moves;
 }
@@ -351,6 +354,7 @@ function getGameState(gameStateOriginal, move, side = ""){
 					gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]] -= 1;
 				}
 			}
+			*/
 
 		}
 		/*
