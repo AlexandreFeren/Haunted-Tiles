@@ -71,6 +71,7 @@ function main(gameState, side) {
 	console.log("calling minimax, good luck to me");
 	//console.log([board, teams]);
 	//console.log(minimax([board, teams], allMoves, side)[1]);
+	
 	return minimax(JSON.parse(JSON.stringify([board, teams])), allMoves, 'home')[1];
 	//return minimax(JSON.parse(JSON.stringify([board, teams])), allMoves, side)[1];
 	// we are returning a timeout here to test limiting execution time on the sandbox side.
@@ -84,8 +85,18 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	
 	allMoves = combineArr(possibleMoves.slice(0, 3));
 	console.log(allMoves);
+	
 	for (let move of allMoves){
 		moveValues.push([value(getGameState(gameState, move, side)), move]);
+		//moveValues.push([minimax(getGameState(gameState, move, side), getValidMoves(gameState), side, maxDepth, depth + 1)[0], move]);
+	}
+	allMoves.sort(function(a, b) {
+		return a[0] - b[0];
+	});
+	allMoves = allMoves.slice(Math.floor(allMoves.length/2), allMoves.length);
+	for (i = 0; i < allMoves.length; i++){
+		//moveValues.push([value(getGameState(gameState, move, side)), move]);
+		moveValues[i][0] = minimax(getGameState(gameState, move, side), getValidMoves(gameState));
 	}
 	moveValues.sort(function(a, b) {
 		return a[0] - b[0];
