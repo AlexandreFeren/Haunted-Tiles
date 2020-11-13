@@ -121,10 +121,12 @@ function value(gameState, side){
 	for (i = 0; i < 3; i++){
 		
 		//should mark team member as dead. As this is passed by reference, it should propagate
-		if (gameState[0][teams[0][i][0]][teams[0][i][1]] <= 1){
+		//also worth noting, I think that the change to board made the death logic not work
+		//as a result of this I have incremented the threshold, and everything should be okay now
+		if (gameState[0][teams[0][i][0]][teams[0][i][1]] <= 2){
 			teams[0][i][2] = true;
 		}
-		if (gameState[0][teams[1][i][0]][teams[1][i][1]] <= 1){
+		if (gameState[0][teams[1][i][0]][teams[1][i][1]] <= 2){
 		    	teams[1][i][2] = true;
 		}
 		//check death status for each team
