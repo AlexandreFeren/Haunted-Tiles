@@ -45,7 +45,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	moveValues.sort(function(a, b) {
 		return a[0] - b[0];
 	});
-	
+	console.log(moveValues);
 	return moveValues[moveValues.length-1];
 	
 	/*
