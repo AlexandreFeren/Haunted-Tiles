@@ -2,7 +2,6 @@ function main(gameState, side) {
 	const myTeam = gameState.teamStates[side];
 	const [rowSize, colSize] = gameState.boardSize;
 	const possibleMoves = [];
-	//allMoves = [];	//possible moves for all 6 monsters
 	
 	board = [[],[],[],[],[],[],[]];
 	for (i = 0; i < gameState.tileStates.length; i++){
@@ -11,17 +10,11 @@ function main(gameState, side) {
 		}
 	}
 	
-	
-	//console.log(b);
-	//console.log("teams");
 
 	h = [];
 	a = [];
 	
 	for (i = 0; i < 3; i++){
-		//console.log("loop");
-		//console.log(gameState.teamStates.home[i]);
-		//console.log(gameState.teamStates.home[i].coord);
 	
 		h.push(gameState.teamStates.home[i].coord);
 		h[i].push(gameState.teamStates.home[i].isDead);
@@ -36,111 +29,24 @@ function main(gameState, side) {
 	}
 	
 	allMoves = getValidMoves([board, teams]);
-	//test = combineArr(allMoves);
-	/*
-	for (let member of gameState.teamStates.home){
-		//get moves for home team
-		//console.log(member);
-		//console.log(home.getOwnPropertyNames());
-		allMoves.push(getValidMoves([gameState], member.coord));
-	}
-	for (let member of gameState.teamStates.away){
-		//get moves for away team
-		allMoves.push(getValidMoves(gameState, member))
-	}
-	*/
-	//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
-	//the actual return value will depend on which side you are playing for
-	
-	//console.log("in main");
-
-	
-	
-	//console.log(gameState.teamStates.home);
-	//console.log(gameState.teamStates.home);
-	//console.log(teams);
-	//console.log(gameState);
-	//console.log(gameState);
-	//console.log(test[0]);
-	//console.log(gameState.tileStates);
-	//console.log(test[0].slice(0,3));
-	//a = getGameState([board, teams], test[0].slice(0, 3), side);
-	//console.log(a)
-	//a = getGameState([board, teams], test[0].slice(0, 3), side
-	
-	//console.log("calling minimax, good luck to me");
-	//console.log([board, teams]);
-	//console.log(minimax([board, teams], allMoves, side)[1]);
 	
 	return minimax(JSON.parse(JSON.stringify([board, teams])), allMoves, 'home')[1];
-	//return minimax(JSON.parse(JSON.stringify([board, teams])), allMoves, side)[1];
-	// we are returning a timeout here to test limiting execution time on the sandbox side.
 }
 
 function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
-	//console.log("minimax start");
-	moveValues = [];
-	//refactoring so that minimax is equivalent for both home and away as something isn't working with the away team.
-	
+	moveValues = [];	
 	
 	allMoves = combineArr(possibleMoves.slice(0, 3));
-	//console.log(allMoves);
 	
 	for (let move of allMoves){
 		moveValues.push([value(getGameState(gameState, move, side)), move]);
-		//moveValues.push([minimax(getGameState(gameState, move, side), getValidMoves(gameState), side, maxDepth, depth + 1)[0], move]);
 	}
-	/*
-	allMoves.sort(function(a, b) {
-		return a[0] - b[0];
-	});
-	allMoves = allMoves.slice(Math.floor(allMoves.length/2), allMoves.length);
 	
-	for (i = 0; i < allMoves.length; i++){
-		//moveValues.push([value(getGameState(gameState, move, side)), move]);
-		moveValues[i][0] = minimax(getGameState(gameState, move, side), getValidMoves(gameState));
-	}
-	*/
 	moveValues.sort(function(a, b) {
 		return a[0] - b[0];
 	});
-	//moveValues.sort((a, b) => a - b);	//max doesn't seem to work with the way the arrays are set up
-	//console.log(moveValues);
-	//console.log(side);
+	
 	return moveValues[moveValues.length-1];
-
-	/*
-	if (side == 'home'){
-		//allMoves will be the array of all move combinations that can be done by this side this turn
-		allMoves = combineArr(possibleMoves.slice(0, 3));
-		console.log(allMoves);
-		for (let move of allMoves){
-			moveValues.push([value(getGameState(gameState, move, side)), move]);
-		}
-		moveValues.sort(function(a, b) {
-			return a[0] - b[0];
-		});
-		//moveValues.sort((a, b) => a - b);	//max doesn't seem to work with the way the arrays are set up
-		console.log(moveValues);
-		console.log(side);
-		return moveValues[moveValues.length-1];
-		
-	}else{
-		
-		allMoves = combineArr(possibleMoves.slice(3, 6));
-		console.log(allMoves);
-		for (let move of allMoves){
-			moveValues.push([value(getGameState(gameState, move, side)), move]);
-		}
-		moveValues.sort(function(a, b) {
-			return a[0] - b[0];
-		});
-		//moveValues.sort((a, b) => a - b);	//min doesn't seem to work with the way the arrays are set up
-		console.log(moveValues);
-		console.log(side);
-		return moveValues[0];
-	}
-	*/
 	
 	/*
 	//to be implemented, use the best n moves from the combineArr paired with getGameState
@@ -159,7 +65,6 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		return [possibleMoves[3][1], possibleMoves[4][1], possibleMoves[5][1]];
 	}
 	*/
-	//console.log("FALLBACK IN MINIMAX");
 	return ['none', 'none', 'none'];	//fallback code
 }
 
@@ -168,18 +73,10 @@ function getValidMoves(gameState){
 	moves = []
 	board = gameState[0];
 
-	//loop through home
-	
-	//loop through away
-	//console.log("inner loop");
-	//console.log(gameState[1][0]);
 	for (i = 0; i < 2; i++){
 		for (let member of gameState[1][i]){
 			move = [];
 			if (member[2]){
-				//console.log("isDead");
-				//console.log(member[3]);
-				//member is dead
 				move.push('none');
 			}else{
 				move.push('none');
@@ -198,8 +95,6 @@ function getValidMoves(gameState){
 				}
 			}
 			moves.push(move);
-			//console.log("moves");
-			//console.log(moves);
 		}
 	}
 
@@ -208,16 +103,10 @@ function getValidMoves(gameState){
 }
 
 function value(gameState, side){
-	//piece alive = good
-	//piece near middle = good
-	//piece near opponent = good
-	//piece near ally = bad
-	//piece in region = C*value of region
-	//console.log(gameState.teamStates.home.getOwnPropertyNames());
+
 	val = 0;
 	teams = gameState[1];
-	//console.log("VALUE");
-	//console.log(val);
+
 	for (i = 0; i < 3; i++){
 		
 		//should mark team member as dead. As this is passed by reference, it should propagate
@@ -251,13 +140,7 @@ function value(gameState, side){
 	*/
 	//console.log(val);
 	for (i = 0; i < 3; i++){
-		//console.log("Game State:");
-		//console.log(gameState);
-		
-		//get value of the region for each piece
-		//console.log("REGION");
-		//console.log(getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]))
-		
+
 		val += getRegionValue(gameState[0], teams[0][i][0], teams[0][i][1]);	
 		val -= getRegionValue(gameState[0], teams[1][i][0], teams[1][i][1]);	
 	}
@@ -299,23 +182,12 @@ function value(gameState, side){
 }
 
 function getGameState(gameStateOriginal, move, side = ""){
-	//determines what the state of the board will be after a valid move set
-	//should take in array of length 3
-	//board = gameState[0];
-	gameState = JSON.parse(JSON.stringify(gameStateOriginal));
 
-	//console.log("in getGameState");
-	//console.log(gameState);
-	//console.log(move);
-	//console.log(gameState[1][0][0][0]);
+	gameState = JSON.parse(JSON.stringify(gameStateOriginal));
 	
-	//console.log(move);
-	//console.log(side);
 	for (j = 0; j < Math.floor(move.length/3); j++){
 		for (i = 0; i < 3; i++){
-			//console.log("in loop");
-			//console.log(gameState);
-			//console.log(gameState[1][0][i]);
+
 			if (side == 'home' || side == "") {
 				//console.log("side = home");
 
@@ -355,27 +227,9 @@ function getGameState(gameStateOriginal, move, side = ""){
 			
 
 		}
-		/*
-		if (side == 'home'){
-			side = 'away';
-		}else{
-			side = 'home';
-		}
-		*/
+
 	}
-	/*
-	//gameState.teamStates.home = 
-	console.log("S");
-	console.log(gameState[0]);
-	console.log(gameState[1]);
-	console.log("[1][0]");
-	console.log(gameState[1][0]);
-	console.log("");
-	console.log(gameState[1][0][0]);
-	console.log(gameState[1][0][0].coord[0]);
-	console.log(gameState[0][gameState[1][0][0].coord[0]][gameState[1][0][0].coord[1]]);
-	console.log("E");
-	*/
+
 	return gameState;
 	
 }
@@ -465,16 +319,4 @@ function combineArr(arr, ind = 0, result = [[]]){
 	else{
 		return combineArr(arr, ind+1, newResult);
 	}
-}
-function translateToBitmap(boardState, playerStates){
-	//using this to ultimately  transition functions to being more efficient by using bitmaps
-	//for now the implementation is just going to be basic array-based
-	//takes a 7x7 array and a 6x2 array
-	//currently unsure of how exactly bitmaps will be represented, but it needs 98 bits for the board
-	//and 62 bits for the pieces (x loc, y loc)
-
-}
-function translateFromBitmap(state){
-	//take whatever bitmap is made and convert it back to arrays
-	//needed to transition over to using bitmaps if that is ultimately done
 }
