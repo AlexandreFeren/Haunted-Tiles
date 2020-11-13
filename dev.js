@@ -68,7 +68,7 @@ function main(gameState, side) {
 	//console.log(a)
 	//a = getGameState([board, teams], test[0].slice(0, 3), side
 	
-	console.log("calling minimax, good luck to me");
+	//console.log("calling minimax, good luck to me");
 	//console.log([board, teams]);
 	//console.log(minimax([board, teams], allMoves, side)[1]);
 	
@@ -85,7 +85,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	
 	allMoves = combineArr(possibleMoves.slice(0, 3));
 	console.log(allMoves);
-	
+	/*
 	for (let move of allMoves){
 		moveValues.push([value(getGameState(gameState, move, side)), move]);
 		//moveValues.push([minimax(getGameState(gameState, move, side), getValidMoves(gameState), side, maxDepth, depth + 1)[0], move]);
@@ -94,6 +94,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		return a[0] - b[0];
 	});
 	allMoves = allMoves.slice(Math.floor(allMoves.length/2), allMoves.length);
+	*/
 	for (i = 0; i < allMoves.length; i++){
 		//moveValues.push([value(getGameState(gameState, move, side)), move]);
 		moveValues[i][0] = minimax(getGameState(gameState, move, side), getValidMoves(gameState));
@@ -212,8 +213,8 @@ function value(gameState, side){
 	//console.log(gameState.teamStates.home.getOwnPropertyNames());
 	val = 0;
 	teams = gameState[1];
-	console.log("VALUE");
-	console.log(val);
+	//console.log("VALUE");
+	//console.log(val);
 	for (i = 0; i < 3; i++){
 		
 		//should mark team member as dead. As this is passed by reference, it should propagate
@@ -245,7 +246,7 @@ function value(gameState, side){
 		}
 	}
 	*/
-	console.log(val);
+	//console.log(val);
 	for (i = 0; i < 3; i++){
 		//console.log("Game State:");
 		//console.log(gameState);
@@ -290,7 +291,7 @@ function value(gameState, side){
 	*/
 	
 
-	console.log(val);
+	//console.log(val);
 	return val;
 }
 
