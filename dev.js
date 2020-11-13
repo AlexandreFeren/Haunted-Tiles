@@ -52,7 +52,7 @@ function main(gameState, side) {
 	//at this point, there should be a 2D array with 6 elements that are possible moves for each of the monsters
 	//the actual return value will depend on which side you are playing for
 	
-	console.log("in main");
+	//console.log("in main");
 
 	
 	
@@ -84,7 +84,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 	
 	
 	allMoves = combineArr(possibleMoves.slice(0, 3));
-	console.log(allMoves);
+	//console.log(allMoves);
 	
 	for (let move of allMoves){
 		moveValues.push([value(getGameState(gameState, move, side)), move]);
@@ -159,7 +159,7 @@ function minimax(gameState, possibleMoves, side, maxDepth = 2, depth = 0){
 		return [possibleMoves[3][1], possibleMoves[4][1], possibleMoves[5][1]];
 	}
 	*/
-	console.log("FALLBACK IN MINIMAX");
+	//console.log("FALLBACK IN MINIMAX");
 	return ['none', 'none', 'none'];	//fallback code
 }
 
