@@ -301,10 +301,10 @@ function getRegionValue(board, i, j){
 	}
 	board[i][j] = -1;
 	
-	val += getRegionValues(board, i+1, j);
-	val += getRegionValues(board, i-1, j);
-	val += getRegionValues(board, i, j+1);
-	val += getRegionValues(board, i, j-1);
+	val += getRegionValue(board, i+1, j);
+	val += getRegionValue(board, i-1, j);
+	val += getRegionValue(board, i, j+1);
+	val += getRegionValue(board, i, j-1);
 	return val;
 	
 }
