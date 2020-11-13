@@ -352,7 +352,7 @@ function getGameState(gameStateOriginal, move, side = ""){
 					gameState[0][gameState[1][1][i][0]][gameState[1][1][i][1]] -= 1;
 				}
 			}
-			*/
+			
 
 		}
 		/*
