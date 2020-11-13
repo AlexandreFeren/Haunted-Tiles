@@ -162,8 +162,8 @@ function value(gameState, side){
 		for (j = 0; j < 3; j++){
 			//get min of distance to each of 3 pieces
 			//manhattan distance between closest pieces
-			console.log(Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
-			val -= (Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
+			console.log(Math.abs(Math.abs(teams[0][i][0]-teams[1][j][0])-2) + Math.abs(Math.abs(teams[0][i][1]-teams[1][j][1])-2));
+			val -= (Math.abs(Math.abs(teams[0][i][0]-teams[1][j][0])-2) + Math.abs(Math.abs(teams[0][i][1]-teams[1][j][1])-2));
 		}
 
 	}
