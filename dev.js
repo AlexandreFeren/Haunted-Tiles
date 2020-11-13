@@ -171,8 +171,9 @@ function value(gameState, side){
 		}
 		//console.log("TEMPVAL");
 		//console.log(tempVal);
-		tempVal.sort((a, b) => a - b)
-		
+		tempVal.sort((a, b) => a - b);
+		console.log("tempVAL");
+		console.log(tempVal);
 		//want a 'better' value for close values. 
 		if (side == 'home'){
 			//apparently Math.max() only works with tuples
