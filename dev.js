@@ -172,7 +172,7 @@ function value(gameState, side){
 		console.log(tempVal);
 		//want a 'better' value for close values. 
 			
-		val += tempVal[0];
+		val -= tempVal[0];
 	}
 	
 	
