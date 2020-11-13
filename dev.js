@@ -159,21 +159,16 @@ function value(gameState, side){
 	console.log("in value, getting neighbor bonus");
 
 	for (i = 0; i < 3; i++){
-		tempVal = [];
 		for (j = 0; j < 3; j++){
 			//get min of distance to each of 3 pieces
 			//manhattan distance between closest pieces
 			console.log(Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
-			tempVal.push(Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
+			val -= (Math.abs(teams[0][i][0]-teams[1][j][0]) + Math.abs(teams[0][i][1]-teams[1][j][1]));
 		}
 
 		tempVal.sort((a, b) => a - b);
-		console.log("tempVAL");
-		console.log(tempVal);
 		//want a 'better' value for close values. 
-			
-		val -= tempVal[0];
-	}
+		}
 	
 	
 
