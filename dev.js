@@ -126,10 +126,10 @@ function value(gameState, side){
 		}
 		//check death status for each team
 		if (teams[0][i][2]){
-			val -= 1000;
+			val -= 10000;
 		}
 		if (teams[1][i][2]){
-			val += 1000;
+			val += 10000;
 		}
 	}
 	
@@ -147,8 +147,8 @@ function value(gameState, side){
 	//console.log(val);
 	for (i = 0; i < 3; i++){
 
-		val += getRegionValue(JSON.parse(JSON.stringify(gameState[0])), teams[0][i][0], teams[0][i][1]);	
-		val -= getRegionValue(JSON.parse(JSON.stringify(gameState[0])), teams[1][i][0], teams[1][i][1]);	
+		val += getRegionValue(JSON.parse(JSON.stringify(gameState[0])), teams[0][i][0], teams[0][i][1])*15;	
+		val -= getRegionValue(JSON.parse(JSON.stringify(gameState[0])), teams[1][i][0], teams[1][i][1])*15;	
 	}
 	
 
@@ -168,7 +168,7 @@ function value(gameState, side){
 		for (j = i; j < 3; j++){
 			//if 2 ally tiles will be on the same tile, pretend they both die, should be quite bad most of the time.
 			if (teams[0][i][0] === teams[0][j][0] && teams[0][i][1] === teams[0][j][1]){
-				val -= 2000;
+				val -= 20000;
 			}
 		}
 
